@@ -57,6 +57,13 @@ async function registerRoutes(app: Elysia, baseDir: string, prefix = "/") {
 		}
 		if (entry.name !== "index.ts") continue;
 		const module = (await import(fullPath)) as Record<string, unknown>;
+		const defaultFn = module.default;
+		if (defaultFn && typeof defaultFn === "function") {
+			app.all(prefix, ({ request, query, params }) => {
+				return defaultFn({ request, query, params });
+			});
+			console.log(`Registered ${fullPath} on ${prefix} route with method all`);
+		}
 		for (const propName in module) {
 			const prop = module[propName];
 			if (typeof prop !== "function") continue;
