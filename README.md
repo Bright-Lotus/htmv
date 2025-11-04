@@ -103,9 +103,10 @@ Creating a run script is advised. You can easily add it to your `package.json` l
 {
   //...
   "scripts": {
-    "dev": "bun run index.ts"
+    "dev": "bun --watch .",
+		"start": "bun run index.ts"
   }
   //...
 }
 ```
-Now you can start your server by running `bun dev`.
+Now you can start your server with hot reloading by running `bun dev` or normally by running `bun start`.
