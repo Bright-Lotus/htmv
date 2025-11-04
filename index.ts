@@ -5,10 +5,10 @@ import { Elysia } from "elysia";
 
 let viewsPath = "";
 
-export async function render(view: string, props: Record<string, unknown>) {
+export async function view(view: string, props: Record<string, unknown>) {
 	if (viewsPath === "")
 		throw new Error(
-			"Views folder path not yet configured. Use `Htmv.setup` before rendering",
+			"Views folder path not yet configured. Use `Htmv.setup` before rendering a view.",
 		);
 	const file = Bun.file(path.join(viewsPath, `${view}.html`));
 	const code = await file.text();
