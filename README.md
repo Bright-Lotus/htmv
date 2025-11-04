@@ -66,7 +66,35 @@ Now let's try it! You can simply start it with `bun run index.ts`. After that, y
 ## Final note
 Did you see how the `{description}` value on our view changed to the one we gave it on our route? Now that's where HTMV gets fun! Just as we now did you could also do more complex stuff like access your DB's data and show it in a nicely form.
 
-## Recommendations
+# Static files
+Having your views is nice and all... but what about images? videos? or maybe you would like to not have to use `<style>` for CSS and `<script>` for your JS.
+
+To fix this, there's actually a folder we haven't made yet. the `public` folder. Make it and just add it to your `setup`
+```ts
+setup({
+	//... the other folders
+	public: path.join(dirPath, 'public')
+})
+```
+You can add any **static files** onto this folder and they will be automatically served at `/public`. Take that into account when importing them inside your `view`.
+
+# Dynamic routes
+Sometimes you don't know the exact route (this is more common in `APIs`). For example, let's say you want to have a route `/api/user/USER_ID_HERE`. Of course you don't want to have a million folders every single one named with a different user id. That's where dynamic routes come into play.
+
+Let's setup one. Just rename your file to `/api/user/:id`.
+
+That's it! Now you can access it inside your route like this:
+```ts
+import { type RouteParams } from "htmv";
+
+export default function UserEndpoint(routeParams: RouteParams) {
+	const { id } = routeParams.params
+	return `Hello user ${id}!`
+}
+```
+Now when you go to `/api/user/1000` you should see `Hello user 1000!`.
+
+# Recommendations
 Creating a run script is advised. You can easily add it to your `package.json` like this
 ```json
 {
