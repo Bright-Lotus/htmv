@@ -30,17 +30,11 @@ type Paths = {
 };
 export async function setup(paths: Paths) {
 	viewsPath = paths.views;
-	const module = await import(path.join(paths.routes, "index.ts"));
-	const fn = module.default;
-	const app = new Elysia()
-		.use(
-			staticPlugin({
-				assets: paths.public,
-			}),
-		)
-		.get("/", () => {
-			return fn();
-		});
+	const app = new Elysia().use(
+		staticPlugin({
+			assets: paths.public,
+		}),
+	);
 
 	await registerRoutes(app, paths.routes);
 	app.listen(paths.port);
