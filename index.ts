@@ -1,4 +1,6 @@
+import fs from "node:fs/promises";
 import path from "node:path";
+import staticPlugin from "@elysiajs/static";
 import { Elysia } from "elysia";
 
 let viewsPath = "";
@@ -20,20 +22,45 @@ export async function render(view: string, props: Record<string, unknown>) {
 
 export type RouteParams = {};
 
-type Setup = {
+type Paths = {
 	routes: string;
 	views: string;
+	public: string;
 	port: number;
 };
-export async function setup({ routes, views, port }: Setup) {
-	viewsPath = views;
-	const module = await import(path.join(routes, "index.ts"));
+export async function setup(paths: Paths) {
+	viewsPath = paths.views;
+	const module = await import(path.join(paths.routes, "index.ts"));
 	const fn = module.default;
-	new Elysia()
+	const app = new Elysia()
+		.use(
+			staticPlugin({
+				assets: paths.public,
+			}),
+		)
 		.get("/", () => {
 			return fn();
-		})
-		.listen(port);
-	console.log(`HTMV running on port ${port}! 🎉`);
-	console.log(`http://localhost:${port}`);
+		});
+
+	await registerRoutes(app, paths.routes);
+	app.listen(paths.port);
+	console.log("");
+	console.log(`HTMV running on port ${paths.port}! 🎉`);
+	console.log(`http://localhost:${paths.port}`);
+}
+
+async function registerRoutes(app: Elysia, baseDir: string, prefix = "/") {
+	const entries = await fs.readdir(baseDir, { withFileTypes: true });
+	for (const entry of entries) {
+		const fullPath = path.join(baseDir, entry.name);
+		if (entry.isDirectory()) {
+			await registerRoutes(app, fullPath, path.join(prefix, entry.name));
+			continue;
+		}
+		if (entry.name !== "index.ts") continue;
+		const module = await import(fullPath);
+		const fn = module.default;
+		app.get(prefix, fn);
+		console.log(`Registered ${fullPath} on ${prefix} route`);
+	}
 }
