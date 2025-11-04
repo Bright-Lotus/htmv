@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import html from "@elysiajs/html";
 import staticPlugin from "@elysiajs/static";
 import { Elysia } from "elysia";
 import { isValidElement } from "react";
