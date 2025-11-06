@@ -10,9 +10,7 @@
 
     // Bundler mode
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
-    "noEmit": true,
 
     // Best practices
     "strict": true,
@@ -24,6 +22,12 @@
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    "noPropertyAccessFromIndexSignature": false,
+    
+    // Config for npm
+    "noEmit": false, // Changed to false to allow it to compile
+    "outDir": "./dist",
+    "declaration": true //generates .d.ts
+  },
+  "include": ["src"]
 }

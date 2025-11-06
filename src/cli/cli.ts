@@ -1,4 +1,4 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import help from "./commands/help";
 import newCommand from "./commands/new";
 import { AVAILABLE_COMMANDS } from "./messages.json";
