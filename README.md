@@ -1,25 +1,10 @@
 # HTMV
-Welcome to HTMV. A simple yet fast web framework currently in work in progress. Installation and usage guide can be found below.
+HTMV. A simple yet fast web framework currently in work in progress. Installation and usage guide can be found below.
 
 # Precautions
 HTMV was made to be used with [Bun](https://bun.com/). It has not been tested and is not guaranted to work on Node.js. Please ensure you have Bun installed before continuing reading.
 
 # Installation
-## Linking the library
-It's not yet uploaded on NPM so you'll have to link it yourself to your project.
-1. Get the repo
-```bash
-$ git clone https://github.com/Fabrisdev/htmv.git
-```
-2. cd into it
-```bash
-$ cd htmv
-```
-3. Add it to your local registry of packages
-```bash
-$ bun link
-```
-Setup of the library is finished! 🎉 Now onto creating your first **HTMV** project!
 ## Creating your first project
 1. Leave that folder and create a new folder for your project
 ```bash
@@ -29,7 +14,7 @@ $ mkdir my-first-htmv-project
 2. Create an empty bun project and add HTMV as a dependency
 ```bash
 bun init # when prompted for the type, choose EMPTY
-bun link htmv # Adds HTMV dependency
+bun add htmv # Adds HTMV dependency
 ```
 3. Create two folders. One for routes and the other for views (You can choose any name)
 4. Now in the `index.ts` add this
