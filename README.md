@@ -1,9 +1,6 @@
 # HTMV
 HTMV. A simple yet fast web framework currently in work in progress. Installation and usage guide can be found below.
 
-# Precautions
-HTMV was made to be used with [Bun](https://bun.com/). It has not been tested and is not guaranted to work on Node.js. Please ensure you have Bun installed before continuing reading.
-
 # Installation
 ## Creating your first project
 1. Leave that folder and create a new folder for your project
