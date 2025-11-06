@@ -55,7 +55,7 @@ async function registerRoutes(app: Elysia, baseDir: string, prefix = "/") {
 			await registerRoutes(app, fullPath, path.join(prefix, entry.name));
 			continue;
 		}
-		if (entry.name !== "index.ts" && entry.name !== "index.tsx") continue;
+		if (entry.name !== "index.ts") continue;
 		const module = (await import(fullPath)) as Record<string, unknown>;
 		const defaultFn = module.default;
 		if (defaultFn && typeof defaultFn === "function") {
