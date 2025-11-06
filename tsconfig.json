@@ -5,7 +5,6 @@
     "target": "ESNext",
     "module": "Preserve",
     "moduleDetection": "force",
-    "jsx": "react-jsx",
     "allowJs": true,
 
     // Bundler mode
@@ -27,7 +26,8 @@
     // Config for npm
     "noEmit": false, // Changed to false to allow it to compile
     "outDir": "./dist",
-    "declaration": true //generates .d.ts
+    "declaration": true, //generates .d.ts
+    
   },
   "include": ["src"]
 }
