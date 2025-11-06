@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import node from "@elysiajs/node";
+import { node } from "@elysiajs/node";
 import staticPlugin from "@elysiajs/static";
 import { Elysia } from "elysia";
 
