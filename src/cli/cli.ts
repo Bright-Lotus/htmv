@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import help from "./commands/help";
-import newCommand from "./commands/new";
-import { AVAILABLE_COMMANDS } from "./consts";
+import help from "./commands/help.js";
+import newCommand from "./commands/new.js";
+import { AVAILABLE_COMMANDS } from "./consts.js";
 
 const args = process.argv.slice(2);
 const command = args[0];
