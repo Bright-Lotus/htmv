@@ -1,6 +1,7 @@
 import childProcess from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { exists } from "../utils.js";
 
 export default async (args: string[]) => {
 	const name = args[0];
@@ -79,13 +80,4 @@ async function runCommand(
 			resolve(1);
 		});
 	});
-}
-
-async function exists(path: string) {
-	try {
-		await fs.access(path);
-		return true;
-	} catch {
-		return false;
-	}
 }

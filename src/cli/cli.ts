@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import gen from "./commands/gen.js";
 import help from "./commands/help.js";
 import newCommand from "./commands/new.js";
 import { AVAILABLE_COMMANDS } from "./consts.js";
@@ -15,6 +16,7 @@ const commandArgs = args.slice(1);
 const commands = {
 	help,
 	new: () => newCommand(commandArgs),
+	gen: () => gen(commandArgs),
 };
 
 if (command in commands) {
