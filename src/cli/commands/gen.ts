@@ -23,7 +23,10 @@ export default async (args: string[]) => {
   <h1>This view was quickly generated with htmv gen.</h1>
 </body>
 </html>`;
-		await generateFile(path.join(viewsFolderPath, `${name}.ts`), viewsContents);
+		await generateFile(
+			path.join(viewsFolderPath, `${name}.html`),
+			viewsContents,
+		);
 	}
 	if (type.toLowerCase() === "route") {
 		const routesFolderPath = await validateOptions("route", ...options);
