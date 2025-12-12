@@ -25,6 +25,20 @@ export default async (args: string[]) => {
 </html>`;
 		await generateFile(viewsFolderPath, viewsContents);
 	}
+	if (type.toLowerCase() === "route") {
+		const routesFolderPath = await validateOptions("route", ...options);
+		const routeContents = `import { type RouteParams } from "htmv";
+
+export default (_params: RouteParams) => {
+	return "Just a simple ALL method.";
+};
+
+export function POST (_params: RouteParams) => {
+	return "Searching for something more specific? How about a POST method route?"
+};
+`;
+		await generateFile(routesFolderPath, routeContents);
+	}
 };
 
 async function generateFile(_path: string, contents: string) {
