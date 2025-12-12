@@ -1,64 +1,26 @@
 # HTMV
 HTMV. A simple yet fast web framework currently in work in progress. Installation and usage guide can be found below.
 
+# Precautions
+HTMV currently only works on Bun. Routing on Node.js is broken. Please take note and only use Bun with it while I'm working on Node.js support.
+
 # Installation
-## Creating your first project
-1. Leave that folder and create a new folder for your project
+It's simple! Just use htmv's CLI!
 ```bash
-$ cd .. # or cd into wherever you'd like to make your project's folder
-$ mkdir my-first-htmv-project
+bunx htmv@latest new my_cool_project
 ```
-2. Create an empty bun project and add HTMV as a dependency
-```bash
-bun init # when prompted for the type, choose EMPTY
-bun add htmv # Adds HTMV dependency
-```
-3. Create two folders. One for routes and the other for views (You can choose any name)
-4. Now in the `index.ts` add this
-```ts
-import path from "node:path";
-import { setup } from "htmv";
-
-const dirPath = import.meta.dir;
-setup({
-	routes: path.join(dirPath, "routes"), // Change to your routes folder name
-	views: path.join(dirPath, "views"), // Change to your views folder name
-	port: 3000,
-});
-```
-5. Let's create your first view! Inside the views folder add a new `example.html` with the contents
-```html
-<h1>Welcome to my blog!</h1>
-<p>{description}</p>
-```
-6. Finally, let's create a route for it. HTMV has file based routing. Every folder inside your `routes` folder indicates a nested route and every `index.ts` is it's entry point. For now, let's keep it simple with just one `index.ts` in it. Create the file and add the next contents
-```ts
-import { type RouteParams, render } from "htmv";
-
-export default async function MyRoute(_params: RouteParams) {
-	return await render("example", {
-		description: "This is my first time using HTMV ❤️",
-	});
-}
-```
+This will create an htmv project on the folder `my_cool_project`. Finally `cd` into it to get started. Dependencies are already installed. No need for a `bun install`.
 
 ## And that's it! We're done. 
-Now let's try it! You can simply start it with `bun run index.ts`. After that, you should now be able to see your page in `http://localhost:3000`.
+Now let's try it! You can simply start it with `bun dev`. After that, you should now be able to see your page in `http://localhost:3000`.
 
 ## Final note
-Did you see how the `{description}` value on our view changed to the one we gave it on our route? Now that's where HTMV gets fun! Just as we now did you could also do more complex stuff like access your DB's data and show it in a nicely form.
+Did you see how the `{title}` value on our view changed to the one we gave it on our route? Now that's where HTMV gets fun! Just as we now did you could also do more complex stuff like access your DB's data and show it in a nicely form.
 
 # Static files
 Having your views is nice and all... but what about images? videos? or maybe you would like to not have to use `<style>` for CSS and `<script>` for your JS.
 
-To fix this, there's actually a folder we haven't made yet. the `public` folder. Make it and just add it to your `setup`
-```ts
-setup({
-	//... the other folders
-	public: path.join(dirPath, 'public')
-})
-```
-You can add any **static files** onto this folder and they will be automatically served at `/public`. Take that into account when importing them inside your `view`.
+For this, you can just add any **static files** onto the `public` folder and they will be automatically served at `/public`. Take that into account when importing them inside your `view`.
 
 # Dynamic routes
 Sometimes you don't know the exact route (this is more common in `APIs`). For example, let's say you want to have a route `/api/user/USER_ID_HERE`. Of course you don't want to have a million folders every single one named with a different user id. That's where dynamic routes come into play.
