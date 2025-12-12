@@ -69,5 +69,13 @@ export function POST(routeParams: RouteParams) {
 ```
 Note how the `default` keyword was removed, that keyword is instead reserved for when you want to hit all endpoints (`ALL` method).
 
+Supported methods currently are:
+- GET
+- POST
+- PUT
+- PATCH
+- DELETE
+- ALL (add `default` keyword)
+
 # Hot reloading
 Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
