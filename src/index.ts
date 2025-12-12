@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { node } from "@elysiajs/node";
 import staticPlugin from "@elysiajs/static";
 import { Elysia } from "elysia";
 
@@ -35,7 +34,7 @@ type Paths = {
 };
 export async function setup(paths: Paths) {
 	viewsPath = paths.views;
-	const app = new Elysia({ adapter: node() }).use(
+	const app = new Elysia().use(
 		staticPlugin({
 			assets: paths.public,
 		}),
