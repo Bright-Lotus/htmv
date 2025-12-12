@@ -39,6 +39,7 @@ export function POST (_params: RouteParams) => {
 `;
 		await generateFile(routesFolderPath, routeContents);
 	}
+	console.log(`${type} ${name} generated succesfully.`);
 };
 
 async function generateFile(_path: string, contents: string) {
