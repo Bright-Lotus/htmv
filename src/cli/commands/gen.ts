@@ -36,7 +36,7 @@ export default (_params: RouteParams) => {
 	return "Just a simple ALL method.";
 };
 
-export function POST (_params: RouteParams) => {
+export function POST (_params: RouteParams) {
 	return "Searching for something more specific? How about a POST method route?"
 };
 `;
