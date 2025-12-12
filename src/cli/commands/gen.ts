@@ -29,7 +29,7 @@ export default async (args: string[]) => {
 		);
 	}
 	if (type.toLowerCase() === "route") {
-		const routesFolderPath = await validateOptions("route", ...options);
+		const routesFolderPath = await validateOptions("routes", ...options);
 		const routeContents = `import { type RouteParams } from "htmv";
 
 export default (_params: RouteParams) => {
