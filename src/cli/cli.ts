@@ -18,7 +18,7 @@ const commands = {
 };
 
 if (command in commands) {
-	commands[command as keyof typeof commands]();
+	await commands[command as keyof typeof commands]();
 	process.exit(0);
 }
 console.error("Unknown command. Available commands are:");
