@@ -23,7 +23,7 @@ export default async (args: string[]) => {
   <h1>This view was quickly generated with htmv gen.</h1>
 </body>
 </html>`;
-		await generateFile(viewsFolderPath, viewsContents);
+		await generateFile(path.join(viewsFolderPath, `${name}.ts`), viewsContents);
 	}
 	if (type.toLowerCase() === "route") {
 		const routesFolderPath = await validateOptions("route", ...options);
@@ -37,7 +37,10 @@ export function POST (_params: RouteParams) => {
 	return "Searching for something more specific? How about a POST method route?"
 };
 `;
-		await generateFile(routesFolderPath, routeContents);
+		await generateFile(
+			path.join(routesFolderPath, `${name}.ts`),
+			routeContents,
+		);
 	}
 	console.log(`${type} ${name} generated succesfully.`);
 };
