@@ -38,19 +38,36 @@ export default function UserEndpoint(routeParams: RouteParams) {
 ```
 Now when you go to `/api/user/1000` you should see `Hello user 1000!`.
 
-# Hot reloading
-Having to restart the server every time you make a change can be quite tedious. You can instead serve your server with `bun --watch .` to watch for any changes to the folder. Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
+# Route handlers
+Following with `APIs`, you sometimes want a single endpoint for your users, for example `/api/user` and depending on the method used on the request act accordingly. For example, create an user with method `POST`, get users with method `GET` and more. 
 
-# Recommendations
-Creating a run script is advised. You can easily add it to your `package.json` like this
-```json
-{
-  //...
-  "scripts": {
-    "dev": "bun --watch .",
-		"start": "bun run index.ts"
-  }
-  //...
+Normally you'd do that programatically like the following:
+```ts
+import { type RouteParams } from "htmv";
+
+export default function UserEndpoint(routeParams: RouteParams) {
+	const method = routeParams.request.method
+	if(method === "GET") {
+		// list users
+	}
+	if(method === "POST") {
+		// create user
+	}
 }
 ```
-Now you can start your server with hot reloading by running `bun dev` or normally by running `bun start`.
+Route handlers allow you to this in an easier way. Just have functions for each method!
+```ts
+import { type RouteParams } from "htmv";
+
+export function GET(routeParams: RouteParams) {
+	// list users
+}
+
+export function POST(routeParams: RouteParams) {
+	// create user
+}
+```
+Note how the `default` keyword was removed, that keyword is instead reserved for when you want to hit all endpoints (`ALL` method).
+
+# Hot reloading
+Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
