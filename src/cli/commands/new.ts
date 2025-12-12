@@ -59,7 +59,8 @@ export default async (_params: RouteParams) => {
 </html>`;
 	await fs.writeFile(path.join(fullPath, "views", "example.html"), viewContent);
 	console.log("5. Creating run scripts...");
-	await runCommand(`npm pkg set scripts.dev="bun index.ts"`);
+	await runCommand(`npm pkg set scripts.dev="bun --watch ."`);
+	await runCommand(`npm pkg set scripts.start="bun index.ts"`);
 	console.log(`All done! Project ${name} created.`);
 	console.log(`Now run cd ${name} and start building your next big project!`);
 };
