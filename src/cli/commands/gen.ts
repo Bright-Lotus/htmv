@@ -11,24 +11,7 @@ export default async (args: string[]) => {
 	if (!["view", "route"].includes(type.toLowerCase()))
 		return console.error("Invalid type inputted. Valid types are: view, route");
 	if (type.toLowerCase() === "view") {
-		let viewsFolderPath = path.resolve("views");
-		if (options.length >= 1) {
-			const [optionName, optionValue] = options;
-			if (optionName === undefined)
-				return console.error("No option name provided.");
-			if (optionName !== "--path")
-				return console.error(
-					"Invalid option provided. Valid options are: --path.",
-				);
-			if (optionValue === undefined)
-				return console.error("No option value provided.");
-			viewsFolderPath = path.resolve(optionValue);
-		}
-		const viewsFolderExists = await exists(viewsFolderPath);
-		if (!viewsFolderExists)
-			return console.error(
-				"Unable to find views folder. Did you change your views folder's name? If so, did you pass the option --path with the corresponding path to it?",
-			);
+		const viewsFolderPath = await validateOptions("views", ...options);
 		const viewsContents = `<!DOCTYPE html>
 <html lang="en">
 
@@ -46,4 +29,33 @@ export default async (args: string[]) => {
 
 async function generateFile(_path: string, contents: string) {
 	await fs.writeFile(_path, contents);
+}
+
+async function validateOptions(
+	folderName: string,
+	optionName?: string,
+	optionValue?: string,
+) {
+	let folderPath = path.resolve(folderName);
+	if (optionName) {
+		if (optionName !== "--path") {
+			console.error("Invalid option provided. Valid options are: --path.");
+			process.exit(1);
+		}
+
+		if (optionValue === undefined) {
+			console.error("No option value provided.");
+			process.exit(1);
+		}
+
+		folderPath = path.resolve(optionValue);
+	}
+	const viewsFolderExists = await exists(folderPath);
+	if (!viewsFolderExists) {
+		console.error(
+			`Unable to find ${folderName} folder. Did you change your ${folderName} folder's name? If so, did you pass the option --path with the corresponding path to it?`,
+		);
+		process.exit(1);
+	}
+	return folderPath;
 }
