@@ -7,7 +7,7 @@ export default async (args: string[]) => {
 	if (name === undefined)
 		return console.error("No name supplied. Project creation cancelled");
 	console.log("1. Starting project creation...");
-	const folderAlreadyExists = await fs.exists(name);
+	const folderAlreadyExists = await exists(name);
 	if (folderAlreadyExists)
 		return console.error("There already exists a folder with that name.");
 	const fullPath = path.resolve(name);
@@ -72,4 +72,13 @@ async function runCommand(
 			resolve(1);
 		});
 	});
+}
+
+async function exists(path: string) {
+	try {
+		await fs.access(path);
+		return true;
+	} catch {
+		return false;
+	}
 }
