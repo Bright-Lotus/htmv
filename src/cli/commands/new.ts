@@ -37,7 +37,29 @@ setup({
 	port: 3000,
 });`;
 	await fs.writeFile(path.join(fullPath, "index.ts"), indexContent);
-	console.log(`Project ${name} created.`);
+	const routeContent = `import { type RouteParams, view } from "htmv";
+
+export default async (_params: RouteParams) => {
+	return await view("example", {
+		title: "Welcome to HTMV!",
+	});
+};
+`;
+	await fs.writeFile(path.join(fullPath, "routes", "index.ts"), routeContent);
+	const viewContent = `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{title}</title>
+</head>
+
+<body>
+  <h1>{title}</h1>
+</body>
+</html>`;
+	await fs.writeFile(path.join(fullPath, "views", "example.html"), viewContent);
+	console.log(`All done! Project ${name} created.`);
+	console.log(`Now run cd ${name} and start building your next big project!`);
 };
 
 async function runCommand(
