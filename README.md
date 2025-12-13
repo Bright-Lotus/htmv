@@ -78,8 +78,8 @@ Supported methods currently are:
 - ALL (add `default` keyword)
 
 # Code generation
-Do you often forget how to write the boilerplate code? Why not just let HTMV do it for you?
-As you now, HTMV comes with the CLI tool you used when creating the project. But it also has the command `htmv gen` which allows you to generate a basic template for a view or route.
+Do you often forget how to write boilerplate code? Why not just let HTMV do it for you?
+As you know, HTMV comes with the CLI tool you used when creating the project. But it also has the command `htmv gen` which allows you to generate a basic template for a view or route.
 
 The syntax is as follows:
 ```bash
