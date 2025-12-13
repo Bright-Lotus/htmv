@@ -23,10 +23,12 @@ export default async (args: string[]) => {
   <h1>This view was quickly generated with htmv gen.</h1>
 </body>
 </html>`;
-		await generateFile(
-			path.join(viewsFolderPath, `${name}.html`),
-			viewsContents,
-		);
+		const fileName = `${name}.html`;
+		const filePath = path.join(viewsFolderPath, fileName);
+		const fileAlreadyExists = await exists(filePath);
+		if (fileAlreadyExists)
+			return console.error(`File ${fileName} already exists.`);
+		await generateFile(filePath, viewsContents);
 	}
 	if (type.toLowerCase() === "route") {
 		const routesFolderPath = await validateOptions("routes", ...options);
@@ -40,10 +42,13 @@ export function POST (_params: RouteParams) {
 	return "Searching for something more specific? How about a POST method route?"
 };
 `;
-		await generateFile(
-			path.join(routesFolderPath, `${name}.ts`),
-			routeContents,
-		);
+		const fileName = `${name}.ts`;
+		const filePath = path.join(routesFolderPath, fileName);
+		const fileAlreadyExists = await exists(filePath);
+
+		if (fileAlreadyExists)
+			return console.error(`File ${fileName} already exists.`);
+		await generateFile(filePath, routeContents);
 	}
 	console.log(`${type} ${name} generated succesfully.`);
 };
