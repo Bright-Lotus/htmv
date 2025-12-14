@@ -77,6 +77,18 @@ Supported methods currently are:
 - DELETE
 - ALL (add `default` keyword)
 
+# Renaming folders
+If you wish to rename either the `views`, `routes` or `public` folders you can do so in `index.ts` as follows:
+```ts
+setup({
+	routes: path.join(dirPath, "my_custom_routes_folder"), 
+	views: path.join(dirPath, "stuff", "views"),
+	public: path.join(dirPath, "static"),
+	port: 3000,
+});
+```
+Just change the string for the new name you wish for. Note that when doing so `htmv gen` will now need `--path` flag passed to know where to find them.
+
 # Code generation
 Do you often forget how to write boilerplate code? Why not just let HTMV do it for you?
 As you know, HTMV comes with the CLI tool you used when creating the project. But it also has the command `htmv gen` which allows you to generate a basic template for a view or route.
