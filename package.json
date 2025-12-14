@@ -17,5 +17,8 @@
   },
   "bin": {
     "htmv": "dist/cli/cli.js"
+  },
+  "scripts": {
+    "build": "tsc"
   }
 }
