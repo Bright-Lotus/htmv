@@ -32,6 +32,9 @@ jobs:
       - name: Install dependencies
         run: bun install
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build (tsc)
         run: npm run build
 
