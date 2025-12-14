@@ -19,6 +19,7 @@
     "htmv": "dist/cli/cli.js"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
   }
 }
