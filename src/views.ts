@@ -19,7 +19,7 @@ export async function view(view: string, props: Record<string, unknown>) {
 			return props[propName] as string;
 		})
 		.replace(
-			/<Isset\s+(\w+)>([\s\S]*?)<\/Isset>/g,
+			/<Isset\s+(!?\w+)>([\s\S]*?)<\/Isset>/g,
 			(_, propNameWithPrefix: string, innerContent: string) => {
 				const isNegated = propNameWithPrefix.startsWith("!");
 				const propName = isNegated
