@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import staticPlugin from "@elysiajs/static";
 import { Elysia } from "elysia";
+import type { Paths, RouteFn } from "./types";
 
 let viewsPath = "";
 
@@ -20,18 +21,6 @@ export async function view(view: string, props: Record<string, unknown>) {
 	});
 }
 
-export type RouteParams = {
-	query: Record<string, string>;
-	request: Request;
-	params: Record<string, string>;
-};
-
-type Paths = {
-	routes: string;
-	views: string;
-	public: string;
-	port: number;
-};
 export async function setup(paths: Paths) {
 	viewsPath = paths.views;
 	const app = new Elysia().use(
@@ -81,7 +70,3 @@ async function registerRoutes(app: Elysia, baseDir: string, prefix = "/") {
 		}
 	}
 }
-
-type RouteFn = (
-	_: RouteParams,
-) => Promise<Response> | Response | Promise<string> | string;
