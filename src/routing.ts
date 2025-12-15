@@ -1,0 +1,43 @@
+import fs from "node:fs/promises";
+import path from "node:path";
+import type Elysia from "elysia";
+import type { RouteFn } from "./types";
+
+export async function registerRoutes(
+	app: Elysia,
+	baseDir: string,
+	prefix = "/",
+) {
+	const entries = await fs.readdir(baseDir, { withFileTypes: true });
+	for (const entry of entries) {
+		const fullPath = path.join(baseDir, entry.name);
+		if (entry.isDirectory()) {
+			await registerRoutes(app, fullPath, path.join(prefix, entry.name));
+			continue;
+		}
+		if (entry.name !== "index.ts") continue;
+		const module = (await import(fullPath)) as Record<string, unknown>;
+		const defaultFn = module.default;
+		if (defaultFn && typeof defaultFn === "function") {
+			app.all(prefix, async ({ request, query, params }) => {
+				const result = await defaultFn({ request, query, params });
+				return result;
+			});
+			console.log(`Registered ${fullPath} on ${prefix} route with method all`);
+		}
+		for (const propName in module) {
+			const prop = module[propName];
+			if (typeof prop !== "function") continue;
+			const fn = prop as RouteFn;
+			const name = fn.name.toLowerCase();
+			if (!["get", "post", "put", "patch", "delete"].includes(name)) continue;
+			app[name as "get"](prefix, async ({ request, query, params }) => {
+				const result = await fn({ request, query, params });
+				return result;
+			});
+			console.log(
+				`Registered ${fullPath} on ${prefix} route with method ${name}`,
+			);
+		}
+	}
+}
