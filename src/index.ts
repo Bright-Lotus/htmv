@@ -1,5 +1,4 @@
-import staticPlugin from "@elysiajs/static";
-import { Elysia } from "elysia";
+import { createApp } from "./app";
 import { registerRoutes } from "./routing";
 import type { Paths } from "./types";
 import { setViewsPath } from "./views";
@@ -8,12 +7,7 @@ export { view } from "./views";
 
 export async function setup(paths: Paths) {
 	setViewsPath(paths.views);
-	const app = new Elysia().use(
-		staticPlugin({
-			assets: paths.public,
-		}),
-	);
-
+	const app = createApp(paths.public);
 	await registerRoutes(app, paths.routes);
 	app.listen(paths.port);
 	console.log("");
