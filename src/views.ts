@@ -15,7 +15,7 @@ export async function view(view: string, props: Record<string, unknown>) {
 	const filePath = path.join(viewsPath, `${view}.html`);
 	const code = await fs.readFile(filePath, "utf-8");
 	const replacedCode = code
-		.replace(/{(.+)}/g, (_, propName) => {
+		.replace(/{(\w+)}/g, (_, propName) => {
 			return props[propName] as string;
 		})
 		.replace(
