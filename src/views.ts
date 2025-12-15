@@ -20,9 +20,15 @@ export async function view(view: string, props: Record<string, unknown>) {
 		})
 		.replace(
 			/<Isset\s+(\w+)>([\s\S]*?)<\/Isset>/g,
-			(_, propName, innerContent) => {
-				if (props[propName] !== undefined && props[propName] !== null)
-					return innerContent;
+			(_, propNameWithPrefix: string, innerContent: string) => {
+				const isNegated = propNameWithPrefix.startsWith("!");
+				const propName = isNegated
+					? propNameWithPrefix.slice(1)
+					: propNameWithPrefix;
+				const exists =
+					props[propName] !== undefined && props[propName] !== null;
+
+				if (isNegated ? !exists : exists) return innerContent;
 				return "";
 			},
 		);
