@@ -1,4 +1,11 @@
-const viewsPath = "";
+import fs from "node:fs/promises";
+import path from "node:path";
+
+let viewsPath = "";
+
+export function setViewsPath(path: string) {
+	viewsPath = path;
+}
 
 export async function view(view: string, props: Record<string, unknown>) {
 	if (viewsPath === "")
