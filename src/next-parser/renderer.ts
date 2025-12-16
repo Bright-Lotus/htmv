@@ -1,4 +1,4 @@
-type Node = RootNode | TextNode | InterpolationNode | IssetNode;
+type Node = RootNode | TextNode | InterpolationNode | IssetNode | ForNode;
 
 interface RootNode {
 	type: "root";
@@ -17,6 +17,13 @@ interface InterpolationNode {
 
 interface IssetNode {
 	type: "isset";
+	itemName: string;
+	children: Node[];
+}
+
+interface ForNode {
+	type: "for";
+	listName: string;
 	itemName: string;
 	children: Node[];
 }
