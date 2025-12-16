@@ -27,3 +27,5 @@ interface ForNode {
 	itemName: string;
 	children: Node[];
 }
+
+function render(node: Node, context: Record<string, unknown>): string {}
