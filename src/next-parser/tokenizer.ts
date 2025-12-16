@@ -30,7 +30,7 @@ type ArgumentsToken = {
 	value: string[];
 };
 
-function tokenize(input: string): Token[] {
+export function tokenize(input: string): Token[] {
 	const tokens: Token[] = [];
 	let textBuffer = "";
 	for (let i = 0; i < input.length; i++) {

@@ -28,7 +28,7 @@ interface ForNode {
 	children: Node[];
 }
 
-function render(node: Node, context: Record<string, unknown>): string {
+export function render(node: Node, context: Record<string, unknown>): string {
 	if (node.type === "text") {
 		return node.text;
 	}
