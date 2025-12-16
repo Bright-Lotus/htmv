@@ -44,8 +44,7 @@ export async function view(view: string, props: Record<string, unknown>) {
 				const propName = isNegated
 					? propNameWithPrefix.slice(1)
 					: propNameWithPrefix;
-				const exists =
-					props[propName] !== undefined && props[propName] !== null;
+				const exists = isset(props[propName]);
 
 				if (isNegated ? !exists : exists) return innerContent;
 				return "";
@@ -54,4 +53,11 @@ export async function view(view: string, props: Record<string, unknown>) {
 	return new Response(replacedCode, {
 		headers: { "Content-Type": "text/html; charset=utf-8" },
 	});
+}
+
+function isset(prop: unknown) {
+	if (Array.isArray(prop)) {
+		return prop.length > 0;
+	}
+	return prop !== undefined && prop !== null;
 }
