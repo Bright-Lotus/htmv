@@ -1,4 +1,4 @@
-type Node = RootNode | TextNode;
+type Node = RootNode | TextNode | InterpolationNode;
 
 interface RootNode {
 	type: "root";
@@ -8,4 +8,9 @@ interface RootNode {
 interface TextNode {
 	type: "text";
 	text: string;
+}
+
+interface InterpolationNode {
+	type: "interpolation";
+	value: string;
 }
