@@ -1,4 +1,4 @@
-type Token =
+export type Token =
 	| TextToken
 	| InterpolationToken
 	| OpenToken

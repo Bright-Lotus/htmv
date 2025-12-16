@@ -1,6 +1,6 @@
 type Node = RootNode | TextNode | InterpolationNode | IssetNode | ForNode;
 
-interface RootNode {
+export interface RootNode {
 	type: "root";
 	children: Node[];
 }
