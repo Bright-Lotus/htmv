@@ -110,3 +110,7 @@ bunx htmv@latest gen view MyCoolView --path cool_stuff/my_custom_views_folder
 
 # Hot reloading
 Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
+
+# Still have questions?
+How about asking the DeepWiki instead?
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Fabrisdev/htmv)
