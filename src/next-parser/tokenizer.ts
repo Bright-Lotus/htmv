@@ -1,4 +1,4 @@
-type Token = TextToken | InterpolationToken | OpenToken;
+type Token = TextToken | InterpolationToken | OpenToken | CloseToken;
 
 type TextToken = {
 	type: "text";
@@ -12,5 +12,10 @@ type InterpolationToken = {
 
 type OpenToken = {
 	type: "open";
+	tag: string;
+};
+
+type CloseToken = {
+	type: "close";
 	tag: string;
 };
