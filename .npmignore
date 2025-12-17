@@ -1,6 +1,6 @@
 node_modules
 src
-.biome.json
+biome.json
 tsconfig.json
 .gitignore
 .github
