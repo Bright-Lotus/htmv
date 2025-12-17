@@ -132,6 +132,7 @@ export function parse(tokens: Token[]) {
 			}
 			textBuffer += letter;
 		}
+		clearBuffer();
 
 		function clearBuffer() {
 			if (textBuffer.length > 0) {
