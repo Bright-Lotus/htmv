@@ -1,8 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { parse } from "./next-parser/parser";
-import { render } from "./next-parser/renderer";
-import { tokenize } from "./next-parser/tokenizer";
+import { parse } from "./compiler/parser";
+import { render } from "./compiler/renderer";
+import { tokenize } from "./compiler/tokenizer";
 
 let viewsPath = "";
 
