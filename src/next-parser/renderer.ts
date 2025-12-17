@@ -58,10 +58,8 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		const isNegated = node.itemName.startsWith("!");
 		const propName = isNegated ? node.itemName.slice(1) : node.itemName;
 		const prop = resolvePropertyPath(propName);
-		if (
-			context[node.itemName] !== undefined &&
-			context[node.itemName] !== null
-		) {
+		const exists = isset(prop);
+		if (isNegated ? !exists : exists) {
 			return node.children.map((node) => render(node, context)).join("");
 		}
 		return "";
