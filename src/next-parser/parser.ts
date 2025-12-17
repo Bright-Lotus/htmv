@@ -83,7 +83,7 @@ function parse(tokens: Token[]) {
 					});
 					continue;
 				}
-				const nextToken = tokens[i]; //should be arguments token
+				const nextToken = tokens[i]; //may be arguments token
 				if (nextToken?.type === "arguments") {
 					const args = nextToken.value.join(" ");
 					nodes.push({
