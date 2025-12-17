@@ -1,7 +1,7 @@
 import type { Node, RootNode } from "./renderer";
 import type { Token } from "./tokenizer";
 
-function parse(tokens: Token[]) {
+export function parse(tokens: Token[]) {
 	let i = 0;
 
 	const root: RootNode = {
