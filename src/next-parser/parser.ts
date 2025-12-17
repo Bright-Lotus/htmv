@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-import type { Node, RootNode } from "./renderer";
+import { type Node, type RootNode, render } from "./renderer";
 import { type Token, tokenize } from "./tokenizer";
 
 function parse(tokens: Token[]) {
@@ -83,7 +83,16 @@ function parse(tokens: Token[]) {
 					});
 					continue;
 				}
-				throw new Error(`Unknown tag <${tag}>`);
+				const nextToken = tokens[i]; //MAY be arguments token
+				if (nextToken?.type === "arguments") {
+					const args = nextToken.value.join(" ");
+					const children = parseChildren(tag);
+					nodes.push({
+						type: "text",
+						text: `<${tag} ${args}>${children}`,
+					});
+					i++;
+				}
 			}
 		}
 		return nodes;
@@ -93,4 +102,5 @@ function parse(tokens: Token[]) {
 const input = await fs.readFile("test.html", "utf-8");
 const tokenized = tokenize(input);
 const parsed = parse(tokenized);
-console.log(parsed);
+const rendered = render(parsed, { items: ["A", "B", "C"], x: true });
+console.log(rendered);
