@@ -1,5 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { parse } from "./next-parser/parser";
+import { render } from "./next-parser/renderer";
+import { tokenize } from "./next-parser/tokenizer";
 
 let viewsPath = "";
 
@@ -14,43 +17,10 @@ export async function view(view: string, props: Record<string, unknown>) {
 		);
 	const filePath = path.join(viewsPath, `${view}.html`);
 	const code = await fs.readFile(filePath, "utf-8");
-	const replacedCode = code
-		.replace(
-			/<For\s+(\w+)\s+in\s+(\w+)>([\s\S]*?)<\/For>/g,
-			(_, itemName: string, listName: string, innerContent: string) => {
-				const list = props[listName];
-				if (!Array.isArray(list))
-					throw new Error(
-						`${listName} on view ${view} is not an array. If you wish for the For to not do anything pass an empty array instead.`,
-					);
-
-				return list
-					.map((item) =>
-						innerContent.replace(
-							new RegExp(`{${itemName}}`, "g"),
-							String(item),
-						),
-					)
-					.join("");
-			},
-		)
-		.replace(/{(\w+)}/g, (_, propName) => {
-			return props[propName] as string;
-		})
-		.replace(
-			/<Isset\s+(!?\w+)>([\s\S]*?)<\/Isset>/g,
-			(_, propNameWithPrefix: string, innerContent: string) => {
-				const isNegated = propNameWithPrefix.startsWith("!");
-				const propName = isNegated
-					? propNameWithPrefix.slice(1)
-					: propNameWithPrefix;
-				const exists = isset(props[propName]);
-
-				if (isNegated ? !exists : exists) return innerContent;
-				return "";
-			},
-		);
-	return new Response(replacedCode, {
+	const tokens = tokenize(code);
+	const root = parse(tokens);
+	const rendered = render(root, props);
+	return new Response(rendered, {
 		headers: { "Content-Type": "text/html; charset=utf-8" },
 	});
 }
