@@ -1,22 +1,21 @@
-import type { RootNode } from "./renderer";
-import type { Token } from "./tokenizer";
+import fs from "node:fs/promises";
+import type { Node, RootNode } from "./renderer";
+import { type Token, tokenize } from "./tokenizer";
 
 function parse(tokens: Token[]) {
+	const i = 0;
+
 	const root: RootNode = {
 		type: "root",
-		children: [],
+		children: parseChildren(),
 	};
-	for (let i = 0; i < tokens.length; i++) {
-		const token = tokens[i];
-		if (token?.type === "text") {
-			root.children.push({
-				type: "text",
-				text: token.text,
-			});
-		}
-		if (token?.type === "open") {
-			const tag = token.tag;
-		}
-	}
+
 	return root;
+
+	function parseChildren(untilTag?: string): Node[] {}
 }
+
+const input = await fs.readFile("test.html", "utf-8");
+const tokenized = tokenize(input);
+const parsed = parse(tokenized);
+console.log(parsed);
