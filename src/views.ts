@@ -24,10 +24,3 @@ export async function view(view: string, props: Record<string, unknown>) {
 		headers: { "Content-Type": "text/html; charset=utf-8" },
 	});
 }
-
-function isset(prop: unknown) {
-	if (Array.isArray(prop)) {
-		return prop.length > 0;
-	}
-	return prop !== undefined && prop !== null;
-}
