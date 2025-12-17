@@ -36,5 +36,6 @@
 		"frontend",
 		"cli"
 	],
-	"license": "MIT"
+	"license": "MIT",
+	"description": "A simple yet fast web framework"
 }
