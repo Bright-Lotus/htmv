@@ -55,6 +55,8 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		return String(resolvePropertyPath(node.value));
 	}
 	if (node.type === "isset") {
+		const isNegated = node.itemName.startsWith("!");
+
 		if (
 			context[node.itemName] !== undefined &&
 			context[node.itemName] !== null
