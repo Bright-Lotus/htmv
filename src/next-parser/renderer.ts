@@ -88,5 +88,5 @@ function isset(prop: unknown) {
 		return prop.length > 0;
 	}
 
-	return prop !== undefined && prop !== null;
+	return prop !== undefined && prop !== null && prop !== false;
 }
