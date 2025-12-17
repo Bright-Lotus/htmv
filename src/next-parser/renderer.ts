@@ -52,7 +52,7 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		throw new Error("La lista pasada no es un array");
 	}
 	if (node.type === "interpolation") {
-		return String(context[node.value]);
+		return String(resolvePropertyPath(node.value));
 	}
 	if (node.type === "isset") {
 		if (
@@ -65,6 +65,13 @@ export function render(node: Node, context: Record<string, unknown>): string {
 	}
 	const output = node.children.map((node) => render(node, context));
 	return output.join("");
-}
 
-function resolvePropertyPath() {}
+	function resolvePropertyPath(path: string) {
+		const properties = path.split(".");
+		let result = context;
+		for (const property of properties) {
+			result = result[property];
+		}
+		return result;
+	}
+}
