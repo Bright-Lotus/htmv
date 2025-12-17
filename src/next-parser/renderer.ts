@@ -82,3 +82,11 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		return result;
 	}
 }
+
+function isset(prop: unknown) {
+	if (Array.isArray(prop)) {
+		return prop.length > 0;
+	}
+
+	return prop !== undefined && prop !== null;
+}
