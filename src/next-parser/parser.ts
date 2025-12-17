@@ -115,7 +115,10 @@ function parse(tokens: Token[]) {
 
 const input = await fs.readFile("test.html", "utf-8");
 const tokenized = tokenize(input);
-console.log(tokenized);
 const parsed = parse(tokenized);
-const rendered = render(parsed, { items: ["A", "B", "C"], x: true });
+const rendered = render(parsed, {
+	items: ["A", "B", "C"],
+	x: true,
+	noses: [1, 2, 3],
+});
 console.log(rendered);
