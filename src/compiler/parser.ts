@@ -84,11 +84,14 @@ export function parse(tokens: Token[]) {
 				}
 				const nextToken = tokens[i]; //may be arguments token
 				if (nextToken?.type === "arguments") {
-					parseArgs(nextToken.value);
-					const args = nextToken.value.join(" ");
 					nodes.push({
 						type: "text",
-						text: `<${tag} ${args}>`,
+						text: `<${tag}`,
+					});
+					parseArgs(nextToken.value);
+					nodes.push({
+						type: "text",
+						text: `>`,
 					});
 					i++;
 					continue;
