@@ -74,7 +74,7 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		for (const property of properties) {
 			if (typeof result !== "object" || result === null)
 				throw new Error("Property access attempt on non-object.");
-			result = result[property];
+			result = (result as Record<string, unknown>)[property];
 		}
 		return result;
 	}
