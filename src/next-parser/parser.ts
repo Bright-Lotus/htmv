@@ -97,7 +97,6 @@ function parse(tokens: Token[]) {
 					type: "text",
 					text: `<${tag}>`,
 				});
-				i++;
 				continue;
 			}
 			if (token?.type === "close") {
@@ -116,6 +115,7 @@ function parse(tokens: Token[]) {
 
 const input = await fs.readFile("test.html", "utf-8");
 const tokenized = tokenize(input);
+console.log(tokenized);
 const parsed = parse(tokenized);
 const rendered = render(parsed, { items: ["A", "B", "C"], x: true });
 console.log(rendered);
