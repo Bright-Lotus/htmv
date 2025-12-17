@@ -26,5 +26,14 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Fabrisdev/htmv"
-	}
+	},
+	"keywords": [
+		"framework",
+		"web-framework",
+		"web",
+		"server",
+		"backend",
+		"frontend",
+		"cli"
+	]
 }
