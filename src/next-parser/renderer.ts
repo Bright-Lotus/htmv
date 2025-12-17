@@ -66,3 +66,5 @@ export function render(node: Node, context: Record<string, unknown>): string {
 	const output = node.children.map((node) => render(node, context));
 	return output.join("");
 }
+
+function resolvePropertyPath() {}
