@@ -84,6 +84,7 @@ export function parse(tokens: Token[]) {
 				}
 				const nextToken = tokens[i]; //may be arguments token
 				if (nextToken?.type === "arguments") {
+					parseArgs(nextToken.value);
 					const args = nextToken.value.join(" ");
 					nodes.push({
 						type: "text",
@@ -109,5 +110,33 @@ export function parse(tokens: Token[]) {
 			}
 		}
 		return nodes;
+	}
+
+	function parseArgs(args: string[]) {
+		let textBuffer = "";
+		for (let i = 0; i < args.length; i++) {
+			const letter = args[i];
+			if (letter === "{") {
+				clearBuffer();
+				continue;
+			}
+			if (letter === "}") {
+				tokens.push({
+					type: "interpolation",
+					value: textBuffer,
+				});
+				clearBuffer();
+			}
+			textBuffer += letter;
+		}
+
+		function clearBuffer() {
+			if (textBuffer.length > 0) {
+				tokens.push({
+					type: "text",
+					text: textBuffer,
+				});
+			}
+		}
 	}
 }
