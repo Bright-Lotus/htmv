@@ -1,6 +1,5 @@
-import fs from "node:fs/promises";
-import { type Node, type RootNode, render } from "./renderer";
-import { type Token, tokenize } from "./tokenizer";
+import type { Node, RootNode } from "./renderer";
+import type { Token } from "./tokenizer";
 
 function parse(tokens: Token[]) {
 	let i = 0;
@@ -112,13 +111,3 @@ function parse(tokens: Token[]) {
 		return nodes;
 	}
 }
-
-const input = await fs.readFile("test.html", "utf-8");
-const tokenized = tokenize(input);
-const parsed = parse(tokenized);
-const rendered = render(parsed, {
-	items: ["A", "B", "C"],
-	x: true,
-	noses: [1, 2, 3],
-});
-console.log(rendered);
