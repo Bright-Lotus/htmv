@@ -35,5 +35,6 @@
 		"backend",
 		"frontend",
 		"cli"
-	]
+	],
+	"license": "MIT"
 }
