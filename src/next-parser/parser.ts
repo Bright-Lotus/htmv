@@ -86,13 +86,21 @@ function parse(tokens: Token[]) {
 				const nextToken = tokens[i]; //MAY be arguments token
 				if (nextToken?.type === "arguments") {
 					const args = nextToken.value.join(" ");
-					const children = parseChildren(tag);
 					nodes.push({
 						type: "text",
-						text: `<${tag} ${args}>${children}`,
+						text: `<${tag} ${args}>`,
 					});
 					i++;
 				}
+			}
+			if (token?.type === "close") {
+				if (token.tag === "for" || token.tag === "isset") continue;
+				const tag = token.tag;
+				nodes.push({
+					type: "text",
+					text: `</${tag}>`,
+				});
+				i++;
 			}
 		}
 		return nodes;
