@@ -67,9 +67,13 @@ export function render(node: Node, context: Record<string, unknown>): string {
 	return output.join("");
 
 	function resolvePropertyPath(path: string) {
-		const properties = path.split(".");
-		let result = context;
+		const [variable, ...properties] = path.split(".");
+		if (variable === undefined)
+			throw new Error("Missing variable name on interpolation");
+		let result = context[variable];
 		for (const property of properties) {
+			if (typeof result !== "object" || result === null)
+				throw new Error("Property access attempt on non-object.");
 			result = result[property];
 		}
 		return result;
