@@ -83,7 +83,7 @@ function parse(tokens: Token[]) {
 					});
 					continue;
 				}
-				const nextToken = tokens[i]; //MAY be arguments token
+				const nextToken = tokens[i]; //should be arguments token
 				if (nextToken?.type === "arguments") {
 					const args = nextToken.value.join(" ");
 					nodes.push({
@@ -91,7 +91,14 @@ function parse(tokens: Token[]) {
 						text: `<${tag} ${args}>`,
 					});
 					i++;
+					continue;
 				}
+				nodes.push({
+					type: "text",
+					text: `<${tag}>`,
+				});
+				i++;
+				continue;
 			}
 			if (token?.type === "close") {
 				if (token.tag === "for" || token.tag === "isset") continue;
