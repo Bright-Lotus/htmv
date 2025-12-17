@@ -1,4 +1,9 @@
-type Node = RootNode | TextNode | InterpolationNode | IssetNode | ForNode;
+export type Node =
+	| RootNode
+	| TextNode
+	| InterpolationNode
+	| IssetNode
+	| ForNode;
 
 export interface RootNode {
 	type: "root";
