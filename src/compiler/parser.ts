@@ -43,20 +43,20 @@ export function parse(tokens: Token[]) {
 				const tag = token.tag.toLowerCase();
 				i++;
 				if (tag === "for") {
-					const nextToken = tokens[i]; //should be arguments token
+					const itemNameToken = tokens[i];
+					if (itemNameToken?.type !== "arguments")
+						throw new Error("Missing item name in for");
+					const itemName = itemNameToken.value;
 					i++;
-					if (nextToken?.type !== "arguments")
-						throw new Error("Missing arguments in for");
-					const [itemName, _in, listName] = nextToken.value;
-					if (
-						itemName === undefined ||
-						_in === undefined ||
-						listName === undefined
-					)
-						throw new Error(
-							"Incorrect amount of arguments in for. Expected 3 arguments",
-						);
-					if (_in !== "in") throw new Error("Expected reserved word in.");
+					const inToken = tokens[i];
+					if (inToken?.type !== "arguments" || inToken.value !== "in")
+						throw new Error("Expected reserved word in");
+					i++;
+					const listNameToken = tokens[i];
+					if (listNameToken?.type !== "arguments")
+						throw new Error("Expected list name in for");
+					const listName = listNameToken.value;
+					i++;
 
 					const children = parseChildren(tag);
 					nodes.push({
