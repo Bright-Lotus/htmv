@@ -30,6 +30,12 @@ type ArgumentsToken = {
 	value: string[];
 };
 
+type AttributeBindingToken = {
+	type: "attr-binding";
+	name: string;
+	expression: string;
+};
+
 export function tokenize(input: string): Token[] {
 	const tokens: Token[] = [];
 	let textBuffer = "";
