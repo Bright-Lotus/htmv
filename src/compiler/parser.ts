@@ -113,41 +113,39 @@ export function parse(tokens: Token[]) {
 			}
 		}
 		return nodes;
-	}
 
-	function parseArgs(_args: string[]) {
-		const args = _args.join(" ");
-		let textBuffer = "";
-		for (let x = 0; x < args.length; x++) {
-			const letter = args[x];
-			if (letter === "{") {
-				pushBuffer();
-				clearBuffer();
-				continue;
+		function parseArgs(_args: string[]) {
+			const args = _args.join(" ");
+			let textBuffer = "";
+			for (let i = 0; i < args.length; i++) {
+				const letter = args[i];
+				if (letter === "{") {
+					pushBuffer();
+					clearBuffer();
+					continue;
+				}
+				if (letter === "}") {
+					nodes.push({
+						type: "interpolation",
+						value: textBuffer,
+					});
+					clearBuffer();
+					continue;
+				}
+				textBuffer += letter;
 			}
-			if (letter === "}") {
-				tokens.push({
-					type: "interpolation",
-					value: textBuffer,
-				});
-				i++;
-				clearBuffer();
-				continue;
-			}
-			textBuffer += letter;
-		}
-		pushBuffer();
+			pushBuffer();
 
-		function clearBuffer() {
-			textBuffer = "";
-		}
-		function pushBuffer() {
-			if (textBuffer.length > 0) {
-				tokens.push({
-					type: "text",
-					text: textBuffer,
-				});
-				i++;
+			function clearBuffer() {
+				textBuffer = "";
+			}
+			function pushBuffer() {
+				if (textBuffer.length > 0) {
+					tokens.push({
+						type: "text",
+						text: textBuffer,
+					});
+				}
 			}
 		}
 	}
