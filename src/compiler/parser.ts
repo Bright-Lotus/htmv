@@ -86,7 +86,7 @@ export function parse(tokens: Token[]) {
 				if (nextToken?.type === "arguments") {
 					nodes.push({
 						type: "text",
-						text: `<${tag}`,
+						text: `<${tag} `,
 					});
 					parseArgs(nextToken.value);
 					nodes.push({
