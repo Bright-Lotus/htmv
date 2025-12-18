@@ -94,7 +94,7 @@ export function parse(tokens: Token[]) {
 				}
 				nodes.push({
 					type: "text",
-					text: `}>`,
+					text: `>`,
 				});
 				continue;
 			}
