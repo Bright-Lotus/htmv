@@ -41,6 +41,12 @@ interface AttributeBindingNode {
 }
 
 export function render(node: Node, context: Record<string, unknown>): string {
+	if (node.type === "attr-binding") {
+		const prop = resolvePropertyPath(node.expr);
+		const exists = isset(prop);
+		return exists ? node.name : "";
+	}
+
 	if (node.type === "text") {
 		return node.text;
 	}
