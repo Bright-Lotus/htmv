@@ -28,7 +28,7 @@ type CloseToken = {
 
 type ArgumentsToken = {
 	type: "arguments";
-	value: string[];
+	value: string;
 };
 
 type AttributeBindingToken = {
@@ -77,10 +77,32 @@ export function tokenize(input: string): Token[] {
 				type: "open",
 				tag,
 			});
-			if (args.length > 0) {
+			for (const arg of args) {
+				if (!arg.startsWith(":")) {
+					tokens.push({
+						type: "arguments",
+						value: arg,
+					});
+					continue;
+				}
+				const [name, expr] = arg.slice(1).split("=");
+				if (name === undefined)
+					throw new Error("Missing name on attribute binding attempt.");
+				if (expr === undefined)
+					throw new Error("Missing expression on attribute binding attempt.");
+				if (!expr.startsWith("{"))
+					throw new Error(
+						"Expected interpolation on expression when using attribute binding",
+					);
+				if (!expr.endsWith("}"))
+					throw new Error(
+						"Expected interpolation closure on expression when using attribute binding",
+					);
+				const expression = expr.slice(1, -1);
 				tokens.push({
-					type: "arguments",
-					value: args,
+					type: "attr-binding",
+					name,
+					expression,
 				});
 			}
 
