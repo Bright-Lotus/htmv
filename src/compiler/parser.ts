@@ -114,8 +114,7 @@ export function parse(tokens: Token[]) {
 		}
 		return nodes;
 
-		function parseArgs(_args: string[]) {
-			const args = _args.join(" ");
+		function parseArgs(args: string) {
 			let textBuffer = "";
 			for (let i = 0; i < args.length; i++) {
 				const letter = args[i];
