@@ -3,7 +3,8 @@ export type Node =
 	| TextNode
 	| InterpolationNode
 	| IssetNode
-	| ForNode;
+	| ForNode
+	| AttributeBindingNode;
 
 export interface RootNode {
 	type: "root";
@@ -31,6 +32,12 @@ interface ForNode {
 	listName: string;
 	itemName: string;
 	children: Node[];
+}
+
+interface AttributeBindingNode {
+	type: "attr-binding";
+	name: string;
+	expr: string;
 }
 
 export function render(node: Node, context: Record<string, unknown>): string {
