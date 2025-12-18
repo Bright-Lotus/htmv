@@ -140,6 +140,7 @@ export function parse(tokens: Token[]) {
 					type: "text",
 					text: textBuffer,
 				});
+				textBuffer = "";
 			}
 		}
 	}
