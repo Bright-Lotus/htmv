@@ -82,23 +82,19 @@ export function parse(tokens: Token[]) {
 					});
 					continue;
 				}
-				const nextToken = tokens[i]; //may be arguments token
-				if (nextToken?.type === "arguments") {
-					nodes.push({
-						type: "text",
-						text: `<${tag} `,
-					});
+				nodes.push({
+					type: "text",
+					text: `<${tag} `,
+				});
+				let nextToken = tokens[i];
+				while (nextToken?.type === "arguments") {
 					parseArgs(nextToken.value);
-					nodes.push({
-						type: "text",
-						text: `>`,
-					});
 					i++;
-					continue;
+					nextToken = tokens[i];
 				}
 				nodes.push({
 					type: "text",
-					text: `<${tag}>`,
+					text: `}>`,
 				});
 				continue;
 			}
