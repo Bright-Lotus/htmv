@@ -115,15 +115,14 @@ export function parse(tokens: Token[]) {
 		return nodes;
 	}
 
-	function parseArgs(args: string[]) {
+	function parseArgs(_args: string[]) {
+		const args = _args.join(" ");
 		let textBuffer = "";
 		for (let i = 0; i < args.length; i++) {
 			const letter = args[i];
+			console.log(letter);
 			if (letter === "{") {
-				tokens.push({
-					type: "text",
-					text: textBuffer,
-				});
+				pushBuffer();
 				clearBuffer();
 				continue;
 			}
@@ -132,15 +131,24 @@ export function parse(tokens: Token[]) {
 					type: "interpolation",
 					value: textBuffer,
 				});
+				i++;
 				clearBuffer();
+				continue;
 			}
 			textBuffer += letter;
 		}
-		clearBuffer();
+		pushBuffer();
 
 		function clearBuffer() {
+			textBuffer = "";
+		}
+		function pushBuffer() {
 			if (textBuffer.length > 0) {
-				textBuffer = "";
+				tokens.push({
+					type: "text",
+					text: textBuffer,
+				});
+				i++;
 			}
 		}
 	}
