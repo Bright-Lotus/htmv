@@ -92,6 +92,15 @@ export function parse(tokens: Token[]) {
 					i++;
 					nextToken = tokens[i];
 				}
+				while (nextToken?.type === "attr-binding") {
+					nodes.push({
+						type: "attr-binding",
+						name: nextToken.name,
+						expr: nextToken.expression,
+					});
+					i++;
+					nextToken = tokens[i];
+				}
 				nodes.push({
 					type: "text",
 					text: `>`,
