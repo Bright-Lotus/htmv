@@ -141,7 +141,7 @@ export function parse(tokens: Token[]) {
 			}
 			function pushBuffer() {
 				if (textBuffer.length > 0) {
-					tokens.push({
+					nodes.push({
 						type: "text",
 						text: textBuffer,
 					});
