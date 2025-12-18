@@ -3,7 +3,8 @@ export type Token =
 	| InterpolationToken
 	| OpenToken
 	| CloseToken
-	| ArgumentsToken;
+	| ArgumentsToken
+	| AttributeBindingToken;
 
 type TextToken = {
 	type: "text";
