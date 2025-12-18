@@ -72,7 +72,7 @@ export function parse(tokens: Token[]) {
 					i++;
 					if (nextToken?.type !== "arguments")
 						throw new Error("Missing arguments in isset");
-					const [itemName] = nextToken.value;
+					const itemName = nextToken.value;
 					if (itemName === undefined) throw new Error("Expected item name");
 					const children = parseChildren(tag);
 					nodes.push({
