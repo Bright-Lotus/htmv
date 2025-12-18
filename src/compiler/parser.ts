@@ -118,9 +118,8 @@ export function parse(tokens: Token[]) {
 	function parseArgs(_args: string[]) {
 		const args = _args.join(" ");
 		let textBuffer = "";
-		for (let i = 0; i < args.length; i++) {
-			const letter = args[i];
-			console.log(letter);
+		for (let x = 0; x < args.length; x++) {
+			const letter = args[x];
 			if (letter === "{") {
 				pushBuffer();
 				clearBuffer();
