@@ -120,6 +120,10 @@ export function parse(tokens: Token[]) {
 		for (let i = 0; i < args.length; i++) {
 			const letter = args[i];
 			if (letter === "{") {
+				tokens.push({
+					type: "text",
+					text: textBuffer,
+				});
 				clearBuffer();
 				continue;
 			}
@@ -136,10 +140,6 @@ export function parse(tokens: Token[]) {
 
 		function clearBuffer() {
 			if (textBuffer.length > 0) {
-				tokens.push({
-					type: "text",
-					text: textBuffer,
-				});
 				textBuffer = "";
 			}
 		}
