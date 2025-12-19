@@ -28,5 +28,6 @@
 		"outDir": "./dist",
 		"declaration": true //generates .d.ts
 	},
-	"include": ["src"]
+	"include": ["src"],
+	"exclude": ["**/tests/**"]
 }
