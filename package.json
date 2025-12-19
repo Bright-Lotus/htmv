@@ -21,7 +21,7 @@
 	"scripts": {
 		"build": "tsc",
 		"lint": "biome check",
-		"prepublishOnly": "npm run build",
+		"prepublishOnly": "bun run build",
 		"test": "bun test",
 		"test:gen:tokenizer": "bun run src/compiler/tests/tokenizer/gen.ts"
 	},
