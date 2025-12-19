@@ -13,11 +13,11 @@ describe("Tokenizer tests", () => {
 		const name = inputFileName.slice(0, -".html".length);
 		test(name, async () => {
 			const input = await Bun.file(
-				path.resolve(...inputFilesPath, inputFileName),
+				path.resolve(inputFilesPath, inputFileName),
 			).text();
 			const tokens = tokenize(input);
 			const expectedOutput = await Bun.file(
-				path.resolve(...outputFilesPath, `${name}.json`),
+				path.resolve(outputFilesPath, `${name}.json`),
 			).json();
 			expect(tokens).toEqual(expectedOutput);
 		});
