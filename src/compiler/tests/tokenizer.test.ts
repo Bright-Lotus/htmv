@@ -3,9 +3,9 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { tokenize } from "../tokenizer";
 
-const commonPath = ["src", "compiler", "tests", "tokenizer"];
-const inputFilesPath = path.resolve(...commonPath, "input");
-const outputFilesPath = path.resolve(...commonPath, "output");
+const commonPath = path.resolve("src", "compiler", "tests", "tokenizer");
+const inputFilesPath = path.resolve(commonPath, "input");
+const outputFilesPath = path.resolve(commonPath, "output");
 const inputFilesNames = await fs.readdir(inputFilesPath);
 
 describe("Tokenizer tests", () => {
