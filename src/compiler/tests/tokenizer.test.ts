@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
+import fs from "node:fs/promises";
 import path from "node:path";
 import { tokenize } from "../tokenizer";
-import fs from "node:fs/promises";
 
 const commonPath = ["src", "compiler", "tests", "tokenizer"];
 const inputFilesPath = path.resolve(...commonPath, "input");
