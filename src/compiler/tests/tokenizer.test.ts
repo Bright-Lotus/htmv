@@ -13,6 +13,6 @@ describe("Tokenizer tests", () => {
 		const expectedOutput = await Bun.file(
 			path.resolve(...commonPath, "output", "1.json"),
 		).json();
-		expect(tokens).toBe(expectedOutput);
+		expect(tokens).toEqual(expectedOutput);
 	});
 });
