@@ -1,0 +1,126 @@
+[
+	{
+		"type": "open",
+		"tag": "!DOCTYPE"
+	},
+	{
+		"type": "arguments",
+		"value": "html"
+	},
+	{
+		"type": "text",
+		"text": "\n"
+	},
+	{
+		"type": "open",
+		"tag": "html"
+	},
+	{
+		"type": "arguments",
+		"value": "lang=\"en\""
+	},
+	{
+		"type": "text",
+		"text": "\n"
+	},
+	{
+		"type": "open",
+		"tag": "head"
+	},
+	{
+		"type": "text",
+		"text": "\n  "
+	},
+	{
+		"type": "open",
+		"tag": "meta"
+	},
+	{
+		"type": "arguments",
+		"value": "charset=\"UTF-8\""
+	},
+	{
+		"type": "text",
+		"text": "\n  "
+	},
+	{
+		"type": "open",
+		"tag": "meta"
+	},
+	{
+		"type": "arguments",
+		"value": "name=\"viewport\""
+	},
+	{
+		"type": "arguments",
+		"value": "content=\"width=device-width,"
+	},
+	{
+		"type": "arguments",
+		"value": "initial-scale=1.0\""
+	},
+	{
+		"type": "text",
+		"text": "\n  "
+	},
+	{
+		"type": "open",
+		"tag": "title"
+	},
+	{
+		"type": "text",
+		"text": "Document"
+	},
+	{
+		"type": "close",
+		"tag": "title"
+	},
+	{
+		"type": "text",
+		"text": "\n"
+	},
+	{
+		"type": "close",
+		"tag": "head"
+	},
+	{
+		"type": "text",
+		"text": "\n"
+	},
+	{
+		"type": "open",
+		"tag": "body"
+	},
+	{
+		"type": "text",
+		"text": "\n  "
+	},
+	{
+		"type": "open",
+		"tag": "p"
+	},
+	{
+		"type": "text",
+		"text": "A simple HTML"
+	},
+	{
+		"type": "close",
+		"tag": "p"
+	},
+	{
+		"type": "text",
+		"text": "\n"
+	},
+	{
+		"type": "close",
+		"tag": "body"
+	},
+	{
+		"type": "text",
+		"text": "\n"
+	},
+	{
+		"type": "close",
+		"tag": "html"
+	}
+]
