@@ -23,7 +23,8 @@
 		"lint": "biome check",
 		"prepublishOnly": "bun run build",
 		"test": "bun test",
-		"test:gen:tokenizer": "bun run src/compiler/tests/tokenizer/gen.ts"
+		"test:gen:tokenizer": "bun run src/compiler/tests/tokenizer/gen.ts",
+		"test:gen:renderer": "bun run src/compiler/tests/renderer/gen.ts"
 	},
 	"repository": {
 		"type": "git",
