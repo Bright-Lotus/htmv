@@ -9,11 +9,10 @@ const inputFilesNames = await fs.readdir(inputFilesPath);
 
 describe("Renderer tests", () => {
 	inputFilesNames.forEach((inputFileName) => {
-		const name = inputFileName.slice(0, -".json".length);
+		const name = inputFileName.slice(0, -".ts".length);
 		test(name, async () => {
-			const input = await Bun.file(
-				path.resolve(inputFilesPath, inputFileName),
-			).json();
+			const input = (await import(path.resolve(inputFilesPath, inputFileName)))
+				.default;
 			const output = render(input.root, input.context);
 			const expectedOutput = await Bun.file(
 				path.resolve(outputFilesPath, `${name}.html`),
