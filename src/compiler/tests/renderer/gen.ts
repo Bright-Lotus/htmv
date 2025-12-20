@@ -4,9 +4,9 @@ import { render } from "../../renderer";
 
 const fileName = process.argv[2];
 if (fileName === undefined) throw new Error("Missing input test file name");
-const input = await Bun.file(
-	path.resolve(import.meta.dir, "input", `${fileName}.json`),
-).json();
+const input = (
+	await import(path.resolve(import.meta.dir, "input", `${fileName}.ts`))
+).default;
 const output = render(input.root, input.context);
 const outputFilePath = path.resolve(
 	import.meta.dir,
