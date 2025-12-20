@@ -1,0 +1,15 @@
+[
+	{ "type": "open", "tag": "!--" },
+	{ "type": "arguments", "value": "Single" },
+	{ "type": "arguments", "value": "line" },
+	{ "type": "arguments", "value": "comment" },
+	{ "type": "arguments", "value": "--" },
+	{ "type": "text", "text": "\n" },
+	{ "type": "open", "tag": "!--" },
+	{ "type": "arguments", "value": "This" },
+	{ "type": "arguments", "value": "is" },
+	{ "type": "arguments", "value": "a" },
+	{ "type": "arguments", "value": "multi-line" },
+	{ "type": "arguments", "value": "comment" },
+	{ "type": "arguments", "value": "--" }
+]
