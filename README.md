@@ -121,7 +121,14 @@ Next to that, one would think *"I'll just add a checked={task.done} attribute to
 
 Like so: `<input type="checkbox" checked={task.done}>`
 
-However, on opening your web page you'll realize the input is always checked. No matter whether `task.done` is truthy or not. This is because for attributes like `checked`, HTML doesn't care if the value for the attribute is truthy or not.
+However, on opening your web page you'll realize the input is always checked. No matter whether `task.done` is truthy or not. This is because for attributes like `checked`, HTML doesn't care if the value for the attribute is truthy or not. It only checks if the attribute is present or not. Therefore, it is impossible to solve this with simple interpolation.
+
+For this, you'll need attribute binding. And HTMV has got your back! Simply add a `:` before the attribute. That's it!
+
+`<input type="checkbox" :checked={task.done}>`
+
+This tells HTMV's compiler: *"Don't add the attribute AND value, just add the attribute alone IF the value is truthy!"* 
+
 
 # Hot reloading
 Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
