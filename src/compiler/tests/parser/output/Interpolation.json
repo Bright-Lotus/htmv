@@ -1,0 +1,11 @@
+{
+	"type": "root",
+	"children": [
+		{ "type": "text", "text": "<h3 " },
+		{ "type": "text", "text": "example=250" },
+		{ "type": "text", "text": ">" },
+		{ "type": "text", "text": "Interpolated value: " },
+		{ "type": "interpolation", "value": "secret_value.x.y.z" },
+		{ "type": "text", "text": "</h3>" }
+	]
+}
