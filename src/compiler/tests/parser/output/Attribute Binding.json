@@ -1,0 +1,15 @@
+{
+	"type": "root",
+	"children": [
+		{ "type": "text", "text": "<input " },
+		{ "type": "attr-binding", "name": "checked", "expr": "shouldBeChecked" },
+		{ "type": "text", "text": ">" },
+		{ "type": "text", "text": "<p " },
+		{ "type": "text", "text": ">" },
+		{
+			"type": "text",
+			"text": "This will only appear checked when shouldBeChecked is truthy"
+		},
+		{ "type": "text", "text": "</p>" }
+	]
+}
