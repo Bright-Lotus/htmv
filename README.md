@@ -111,7 +111,17 @@ bunx htmv@latest gen view MyCoolView --path cool_stuff/my_custom_views_folder
 # Attribute binding
 Although being able to interpolate values is nice, sometimes you need *just a bit* more than that.
 
-For example, let's say you have a task you wish to show if it's done or not. you want an `<input type="checkbox">` element to have the attribute checked when 
+For example, let's say you have a task you wish to show if it's done or not:
+
+The first step would be to pass the `{task.done}` value to the view.
+
+After that, you should have an `<input type="checkbox">` element inside your view.
+
+Next to that, one would think *"I'll just add a checked={task.done} attribute to it!"*
+
+Like so: `<input type="checkbox" checked={task.done}>`
+
+However, on opening your web page you'll realize the input is always checked. No matter whether `task.done` is truthy or not. This is because for attributes like `checked`, HTML doesn't care if the value for the attribute is truthy or not.
 
 # Hot reloading
 Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
