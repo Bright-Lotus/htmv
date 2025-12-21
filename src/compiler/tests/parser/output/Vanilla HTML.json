@@ -1,0 +1,9 @@
+{
+	"type": "root",
+	"children": [
+		{ "type": "text", "text": "<p " },
+		{ "type": "text", "text": ">" },
+		{ "type": "text", "text": "Inner contents of a p tag" },
+		{ "type": "text", "text": "</p>" }
+	]
+}
