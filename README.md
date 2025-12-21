@@ -108,6 +108,33 @@ However, note that if you have changed the name of your folders HTMV will be una
 bunx htmv@latest gen view MyCoolView --path cool_stuff/my_custom_views_folder
 ```
 
+# Interpolation
+As mentioned briefly at the start of the docs. One of HTMV's main features is interpolation.
+
+What's that? Put simply, have a value on the backend you wish to show when rendering the view? Just use interpolation!
+
+Here's a simple example which lets you randomly show different strings on page load:
+```ts
+// index.ts route
+import { view } from 'htmv'
+
+export default () => {
+	const messages = ["Welcome back!", "How was your day?", "We're glad you're back."]
+
+	return view('example', {
+		message: getRandomValue(messages)
+	})
+}
+
+function getRandomValue(arr: Array) {
+	return arr[Math.floor(Math.random() * arr.length)]
+}
+```
+```html
+// example.html view
+<p>{message}</p>
+```
+
 # Attribute binding
 Although being able to interpolate values is nice, sometimes you need *just a bit* more than that.
 
