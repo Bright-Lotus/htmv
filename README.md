@@ -122,7 +122,7 @@ export default () => {
 	const messages = ["Welcome back!", "How was your day?", "We're glad you're back."]
 
 	return view('example', {
-		message: getRandomValue(messages)
+		message: getRandomValue(messages) // the message variable will get sent to the view for you to use freely.
 	})
 }
 
@@ -132,7 +132,7 @@ function getRandomValue(arr: Array) {
 ```
 ```html
 <!-- example.html view -->
-<p>{message}</p>
+<p>{message}</p> <!-- here we are accessing the message variable -->
 ```
 
 # Attribute binding
