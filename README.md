@@ -131,7 +131,7 @@ function getRandomValue(arr: Array) {
 }
 ```
 ```html
-// example.html view
+<!-- example.html view -->
 <p>{message}</p>
 ```
 
