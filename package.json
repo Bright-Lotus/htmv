@@ -24,7 +24,8 @@
 		"prepublishOnly": "bun run build",
 		"test": "bun test",
 		"test:gen:tokenizer": "bun run src/compiler/tests/tokenizer/gen.ts",
-		"test:gen:renderer": "bun run src/compiler/tests/renderer/gen.ts"
+		"test:gen:renderer": "bun run src/compiler/tests/renderer/gen.ts",
+		"test:gen:parser": "bun run src/compiler/tests/parser/gen.ts"
 	},
 	"repository": {
 		"type": "git",
