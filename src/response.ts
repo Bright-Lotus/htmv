@@ -6,7 +6,7 @@ type HttpResponse = {
 
 type ResponseLike = string | object | HttpResponse;
 
-function resolveResponse(result: ResponseLike): Response {
+export function resolveResponse(result: ResponseLike): Response {
 	if (typeof result === "string") {
 		return new Response(result, {
 			headers: { "Content-Type": "text/html; charset=utf-8" },
