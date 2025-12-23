@@ -26,5 +26,9 @@ function resolveResponse(result: ResponseLike): Response {
 }
 
 function isHttpResponse(value: object): value is HttpResponse {
+	if (value === null) return false;
+	if (!("status" in value) || typeof value.status !== "number") return false;
+	if (!("headers" in value) || typeof value.headers !== "object") return false;
+	if (!("body" in value) || typeof value.body !== "string") return false;
 	return true;
 }
