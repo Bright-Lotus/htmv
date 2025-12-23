@@ -53,6 +53,10 @@ export function created(
 	return requestHelper(201, body, headers);
 }
 
+export function ok(body?: string | object, headers?: Headers) {
+	return requestHelper(200, body, headers);
+}
+
 function requestHelper(
 	status: number,
 	body?: string | object,
