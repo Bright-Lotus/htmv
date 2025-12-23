@@ -87,12 +87,16 @@ export function parse(tokens: Token[]) {
 					text: `<${tag} `,
 				});
 				let nextToken = tokens[i];
-				while (nextToken?.type === "arguments") {
-					parseArgs(nextToken.value);
-					i++;
-					nextToken = tokens[i];
-				}
-				while (nextToken?.type === "attr-binding") {
+				while (
+					nextToken?.type === "arguments" ||
+					nextToken?.type === "attr-binding"
+				) {
+					if (nextToken.type === "arguments") {
+						parseArgs(nextToken.value);
+						i++;
+						nextToken = tokens[i];
+						continue;
+					}
 					nodes.push({
 						type: "attr-binding",
 						name: nextToken.name,
