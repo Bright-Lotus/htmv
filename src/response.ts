@@ -43,8 +43,16 @@ export function BadRequest(
 	contents: string | object,
 	headers?: Headers,
 ): HttpResponse {
+	return requestHelper(400, contents, headers);
+}
+
+function requestHelper(
+	status: number,
+	contents: string | object,
+	headers?: Headers,
+): HttpResponse {
 	return {
-		status: 400,
+		status,
 		body: typeof contents === "string" ? contents : JSON.stringify(contents),
 		headers:
 			headers !== undefined
