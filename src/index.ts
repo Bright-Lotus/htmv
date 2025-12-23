@@ -1,5 +1,5 @@
 import { createApp } from "./app";
-import { registerRoutes } from "./routing";
+import { registerRoutes } from "./routing/routing";
 import type { Paths } from "./types";
 import { setViewsPath } from "./views";
 
