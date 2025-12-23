@@ -16,7 +16,7 @@ const projects = (
 
 describe("Routing tests", () => {
 	projects.forEach((project) => {
-		test(project, async () => {
+		test(path.basename(project), async () => {
 			const expectedOutput = JSON.parse(
 				await fs.readFile(path.join(project, "expected_output.json"), "utf-8"),
 			);
