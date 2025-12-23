@@ -51,6 +51,10 @@ export function ok(body?: string | object, headers?: Headers) {
 	return requestHelper(200, body, headers);
 }
 
+export function noContent(headers?: Headers) {
+	return requestHelper(204, undefined, headers);
+}
+
 function requestHelper(
 	status: number,
 	body?: string | object,
