@@ -1,0 +1,18 @@
+[
+	{
+		"method": "DELETE",
+		"path": "/api/user"
+	},
+	{
+		"method": "GET",
+		"path": "/api/user"
+	},
+	{
+		"method": "POST",
+		"path": "/api/user"
+	},
+	{
+		"method": "GET",
+		"path": "/"
+	}
+]
