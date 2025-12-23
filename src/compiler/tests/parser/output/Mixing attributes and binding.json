@@ -1,0 +1,15 @@
+{
+	"type": "root",
+	"children": [
+		{ "type": "text", "text": "<h1 " },
+		{ "type": "text", "text": "class='example'" },
+		{ "type": "attr-binding", "name": "checked", "expr": "abc" },
+		{ "type": "text", "text": "class='example'" },
+		{ "type": "attr-binding", "name": "checked", "expr": "abc" },
+		{ "type": "text", "text": "class='example'" },
+		{ "type": "attr-binding", "name": "checked", "expr": "abc" },
+		{ "type": "text", "text": ">" },
+		{ "type": "text", "text": "Inside" },
+		{ "type": "text", "text": "</h1>" }
+	]
+}
