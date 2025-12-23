@@ -1,6 +1,8 @@
+type Headers = Record<string, string>;
+
 type HttpResponse = {
 	status: number;
-	headers: Record<string, string>;
+	headers?: Headers;
 	body: string;
 };
 
@@ -35,4 +37,20 @@ function isHttpResponse(value: object): value is HttpResponse {
 
 export function HttpResponse(response: HttpResponse) {
 	return response;
+}
+
+export function BadRequest(
+	contents: string | object,
+	headers?: Headers,
+): HttpResponse {
+	return {
+		status: 400,
+		body: typeof contents === "string" ? contents : JSON.stringify(contents),
+		headers:
+			headers !== undefined
+				? headers
+				: typeof contents === "string"
+					? { "Content-Type": "text/plain; charset=utf-8" }
+					: { "Content-Type": "application/json; charset=utf-8" },
+	};
 }
