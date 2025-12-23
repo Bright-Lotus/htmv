@@ -19,6 +19,7 @@ export async function registerRoutes(
 			continue;
 		}
 		if (entry.name !== "index.ts") continue;
+
 		const module = (await import(fullPath)) as Record<string, unknown>;
 		const defaultFn = module.default;
 		if (defaultFn && typeof defaultFn === "function") {
@@ -57,4 +58,26 @@ function registerRoute({ app, method, path, fn }: RegisterRouteParams) {
 
 function isMethod(value: string): value is Method {
 	return ["get", "post", "put", "patch", "delete", "all"].includes(value);
+}
+
+async function registerModuleRoutes(app: Elysia, prefix: string, path: string) {
+	const module = (await import(path)) as Record<string, unknown>;
+	const defaultFn = module.default;
+	if (defaultFn && typeof defaultFn === "function") {
+		registerRoute({
+			app,
+			method: "all",
+			path: prefix,
+			fn: defaultFn as RouteFn,
+		});
+	}
+	for (const propName in module) {
+		const prop = module[propName];
+		if (typeof prop !== "function") continue;
+		const fn = prop as RouteFn;
+		const name = fn.name.toLowerCase();
+		if (isMethod(name)) {
+			registerRoute({ app, method: name, path: prefix, fn });
+		}
+	}
 }
