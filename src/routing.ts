@@ -26,7 +26,12 @@ export async function registerRoutes(
 				const result = await defaultFn({ request, query, params });
 				return resolveResponse(result);
 			});
-			registerRoute({ app, method: "all", path: prefix, fn: defaultFn });
+			registerRoute({
+				app,
+				method: "all",
+				path: prefix,
+				fn: defaultFn as RouteFn,
+			});
 		}
 		for (const propName in module) {
 			const prop = module[propName];
