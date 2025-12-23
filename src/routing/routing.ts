@@ -1,8 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type Elysia from "elysia";
-import { resolveResponse } from "./http/response";
-import type { RouteFn } from "./types";
+import { resolveResponse } from "../http/response";
+import type { RouteFn } from "../types";
 
 type Method = "get" | "post" | "put" | "patch" | "delete" | "all";
 
