@@ -3,7 +3,7 @@ type Headers = Record<string, string>;
 type HttpResponse = {
 	status: number;
 	headers?: Headers;
-	body: string;
+	body?: string;
 };
 
 type ResponseLike = string | object | HttpResponse;
@@ -40,14 +40,14 @@ export function HttpResponse(response: HttpResponse) {
 }
 
 export function BadRequest(
-	contents: string | object,
+	contents?: string | object,
 	headers?: Headers,
 ): HttpResponse {
 	return requestHelper(400, contents, headers);
 }
 
 export function Created(
-	contents: string | object,
+	contents?: string | object,
 	headers?: Headers,
 ): HttpResponse {
 	return requestHelper(201, contents, headers);
@@ -55,9 +55,14 @@ export function Created(
 
 function requestHelper(
 	status: number,
-	contents: string | object,
+	contents?: string | object,
 	headers?: Headers,
 ): HttpResponse {
+	if (contents === undefined)
+		return {
+			status,
+			headers,
+		};
 	return {
 		status,
 		body: typeof contents === "string" ? contents : JSON.stringify(contents),
