@@ -22,10 +22,6 @@ export async function registerRoutes(
 		const module = (await import(fullPath)) as Record<string, unknown>;
 		const defaultFn = module.default;
 		if (defaultFn && typeof defaultFn === "function") {
-			app.all(prefix, async ({ request, query, params }) => {
-				const result = await defaultFn({ request, query, params });
-				return resolveResponse(result);
-			});
 			registerRoute({
 				app,
 				method: "all",
