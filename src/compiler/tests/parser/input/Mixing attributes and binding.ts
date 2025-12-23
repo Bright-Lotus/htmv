@@ -1,6 +1,7 @@
 import type { Token } from "../../../tokenizer";
 
 export default [
+	/*
 	{
 		type: "open",
 		tag: "h1",
@@ -40,4 +41,5 @@ export default [
 		type: "close",
 		tag: "h1",
 	},
+*/
 ] as Token[];
