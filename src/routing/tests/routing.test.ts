@@ -4,22 +4,25 @@ import path from "node:path";
 import Elysia from "elysia";
 import { registerRoutes } from "../routing";
 
-const projects = (await fs.readdir(import.meta.dir)).filter((project) =>
-	isFolder(project),
-);
+const entries = await fs.readdir(import.meta.dir);
+const projects = (
+	await Promise.all(
+		entries.map(async (entry) => {
+			const fullPath = path.join(import.meta.dir, entry);
+			return (await isFolder(fullPath)) ? fullPath : null;
+		}),
+	)
+).filter((project) => project !== null);
 
 describe("Routing tests", () => {
 	projects.forEach((project) => {
 		test(project, async () => {
 			const expectedOutput = JSON.parse(
-				await fs.readFile(
-					path.join(import.meta.dir, project, "expected_output.json"),
-					"utf-8",
-				),
+				await fs.readFile(path.join(project, "expected_output.json"), "utf-8"),
 			);
 			const app = new Elysia();
 			await registerRoutes(app, project);
-			expect(app).toEqual(expectedOutput);
+			expect(app.routes).toEqual(expectedOutput);
 		});
 	});
 });
