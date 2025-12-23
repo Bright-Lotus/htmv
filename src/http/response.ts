@@ -6,7 +6,7 @@ export type HttpResponse = {
 	body?: string;
 };
 
-type ResponseLike = string | object | HttpResponse;
+export type ResponseLike = string | object | HttpResponse;
 
 export function resolveResponse(result: ResponseLike): Response {
 	if (typeof result === "string") {
