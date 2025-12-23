@@ -66,6 +66,8 @@ export default async (_params: RouteParams) => {
 	await runCommand(`npm pkg set scripts.start="bun index.ts"`, {
 		cwd: fullPath,
 	});
+	console.log("6. Rewriting tsconfig.json...");
+
 	console.log(`All done! Project ${name} created.`);
 	console.log(`Now run cd ${name} and start building your next big project!`);
 };
