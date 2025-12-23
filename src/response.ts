@@ -35,18 +35,18 @@ function isHttpResponse(value: object): value is HttpResponse {
 	return true;
 }
 
-export function HttpResponse(response: HttpResponse) {
+export function httpResponse(response: HttpResponse) {
 	return response;
 }
 
-export function BadRequest(
+export function badRequest(
 	body?: string | object,
 	headers?: Headers,
 ): HttpResponse {
 	return requestHelper(400, body, headers);
 }
 
-export function Created(
+export function created(
 	body?: string | object,
 	headers?: Headers,
 ): HttpResponse {
