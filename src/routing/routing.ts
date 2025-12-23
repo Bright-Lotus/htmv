@@ -2,9 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type Elysia from "elysia";
 import { resolveResponse } from "../http/response";
-import type { RouteFn } from "./types";
-
-type Method = "get" | "post" | "put" | "patch" | "delete" | "all";
+import { isMethod } from "./helpers";
+import type { Method, RouteFn } from "./types";
 
 export async function registerRoutes(
 	app: Elysia,
@@ -35,10 +34,6 @@ function registerRoute({ app, method, path, fn }: RegisterRouteParams) {
 		const result = await fn({ request, query, params });
 		return resolveResponse(result);
 	});
-}
-
-function isMethod(value: string): value is Method {
-	return ["get", "post", "put", "patch", "delete", "all"].includes(value);
 }
 
 async function registerModuleRoutes(app: Elysia, prefix: string, path: string) {
