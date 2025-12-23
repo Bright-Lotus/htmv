@@ -33,13 +33,20 @@ export async function registerRoutes(
 			const fn = prop as RouteFn;
 			const name = fn.name.toLowerCase();
 			if (isMethod(name)) {
-				registerRoute(app, name, prefix, fn);
+				registerRoute({ app, method: name, path: prefix, fn });
 			}
 		}
 	}
 }
 
-function registerRoute(app: Elysia, method: Method, path: string, fn: RouteFn) {
+type RegisterRouteParams = {
+	app: Elysia;
+	method: Method;
+	path: string;
+	fn: RouteFn;
+};
+
+function registerRoute({ app, method, path, fn }: RegisterRouteParams) {
 	app[method as "get"](path, async ({ request, query, params }) => {
 		const result = await fn({ request, query, params });
 		return resolveResponse(result);
