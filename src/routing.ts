@@ -19,26 +19,7 @@ export async function registerRoutes(
 			continue;
 		}
 		if (entry.name !== "index.ts") continue;
-
-		const module = (await import(fullPath)) as Record<string, unknown>;
-		const defaultFn = module.default;
-		if (defaultFn && typeof defaultFn === "function") {
-			registerRoute({
-				app,
-				method: "all",
-				path: prefix,
-				fn: defaultFn as RouteFn,
-			});
-		}
-		for (const propName in module) {
-			const prop = module[propName];
-			if (typeof prop !== "function") continue;
-			const fn = prop as RouteFn;
-			const name = fn.name.toLowerCase();
-			if (isMethod(name)) {
-				registerRoute({ app, method: name, path: prefix, fn });
-			}
-		}
+		registerModuleRoutes(app, prefix, fullPath);
 	}
 }
 
