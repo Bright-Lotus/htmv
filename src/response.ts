@@ -19,6 +19,10 @@ function resolveResponse(result: ResponseLike): Response {
 			headers: result.headers,
 		});
 	}
+
+	return new Response(JSON.stringify(result), {
+		headers: { "Content-Type": "application/json; charset=utf-8" },
+	});
 }
 
 function isHttpResponse(value: object): value is HttpResponse {
