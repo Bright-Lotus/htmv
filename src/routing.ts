@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type Elysia from "elysia";
-import { resolveResponse } from "./response";
+import { resolveResponse } from "./http/response";
 import type { RouteFn } from "./types";
 
 export async function registerRoutes(

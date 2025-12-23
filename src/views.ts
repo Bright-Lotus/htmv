@@ -3,7 +3,7 @@ import path from "node:path";
 import { parse } from "./compiler/parser";
 import { render } from "./compiler/renderer";
 import { tokenize } from "./compiler/tokenizer";
-import { resolveResponse } from "./response";
+import { resolveResponse } from "./http/response";
 
 let viewsPath = "";
 
