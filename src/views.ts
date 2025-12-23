@@ -3,7 +3,7 @@ import path from "node:path";
 import { parse } from "./compiler/parser";
 import { render } from "./compiler/renderer";
 import { tokenize } from "./compiler/tokenizer";
-import { resolveResponse } from "./http/response";
+import type { HttpResponse } from "./http/response";
 
 let viewsPath = "";
 
@@ -11,7 +11,10 @@ export function setViewsPath(path: string) {
 	viewsPath = path;
 }
 
-export async function view(view: string, props: Record<string, unknown>) {
+export async function view(
+	view: string,
+	props: Record<string, unknown>,
+): Promise<HttpResponse> {
 	if (viewsPath === "")
 		throw new Error(
 			"Views folder path not yet configured. Use `Htmv.setup` before rendering a view.",
@@ -21,9 +24,9 @@ export async function view(view: string, props: Record<string, unknown>) {
 	const tokens = tokenize(code);
 	const root = parse(tokens);
 	const rendered = render(root, props);
-	return resolveResponse({
+	return {
 		status: 200,
 		body: rendered,
 		headers: { "Content-Type": "text/html; charset=utf-8" },
-	});
+	};
 }
