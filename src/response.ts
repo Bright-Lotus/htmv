@@ -12,4 +12,9 @@ function resolveResponse(result: ResponseLike): Response {
 			headers: { "Content-Type": "text/html; charset=utf-8" },
 		});
 	}
+	if (typeof result === "object") {
+		return new Response(result, {
+			headers: { "Content-Type": "application/json" },
+		});
+	}
 }
