@@ -12,9 +12,15 @@ function resolveResponse(result: ResponseLike): Response {
 			headers: { "Content-Type": "text/html; charset=utf-8" },
 		});
 	}
-	if (typeof result === "object") {
-		return new Response(result, {
-			headers: { "Content-Type": "application/json" },
+
+	if (isHttpResponse(result)) {
+		return new Response(result.body, {
+			status: result.status,
+			headers: result.headers,
 		});
 	}
+}
+
+function isHttpResponse(value: object): value is HttpResponse {
+	return true;
 }
