@@ -3,6 +3,7 @@ import { registerRoutes } from "./routing";
 import type { Paths } from "./types";
 import { setViewsPath } from "./views";
 
+export { HttpResponse } from "./response";
 export type { RouteParams } from "./types";
 export { view } from "./views";
 
