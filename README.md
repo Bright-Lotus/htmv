@@ -163,3 +163,8 @@ Having to restart the server every time you make a change can be quite tedious. 
 # Still have questions?
 How about asking the DeepWiki instead?
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Fabrisdev/htmv)
+
+# Interested in HTMV's development or would like to contribute?
+There's still a ton of work left! Check out features to come at [**HTMV's Trello page**](https://trello.com/b/rhprnM4y/htmv)! 
+
+If you would like to contribute, check out the Trello for ideas on what to work on!
