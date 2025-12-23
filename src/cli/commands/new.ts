@@ -75,6 +75,10 @@ export default async (_params: RouteParams) => {
 	tsconfigWithoutStartingBracket = `{
 	"exclude": ["public"],
 ${tsconfigWithoutStartingBracket}`;
+	await fs.writeFile(
+		path.join(fullPath, "tsconfig.json"),
+		tsconfigWithoutStartingBracket,
+	);
 	console.log(`All done! Project ${name} created.`);
 	console.log(`Now run cd ${name} and start building your next big project!`);
 };
