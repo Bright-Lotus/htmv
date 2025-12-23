@@ -13,4 +13,4 @@ export type Paths = {
 	port: number;
 };
 
-export type RouteFn = (_: RouteParams) => ResponseLike;
+export type RouteFn = (_: RouteParams) => ResponseLike | Promise<ResponseLike>;
