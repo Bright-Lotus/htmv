@@ -46,6 +46,13 @@ export function BadRequest(
 	return requestHelper(400, contents, headers);
 }
 
+export function Created(
+	contents: string | object,
+	headers?: Headers,
+): HttpResponse {
+	return requestHelper(201, contents, headers);
+}
+
 function requestHelper(
 	status: number,
 	contents: string | object,
