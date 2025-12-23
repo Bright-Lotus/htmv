@@ -13,7 +13,7 @@ export function setViewsPath(path: string) {
 
 export async function view(
 	view: string,
-	props: Record<string, unknown>,
+	props?: Record<string, unknown>,
 ): Promise<HttpResponse> {
 	if (viewsPath === "")
 		throw new Error(
@@ -23,7 +23,7 @@ export async function view(
 	const code = await fs.readFile(filePath, "utf-8");
 	const tokens = tokenize(code);
 	const root = parse(tokens);
-	const rendered = render(root, props);
+	const rendered = render(root, props ? props : {});
 	return {
 		status: 200,
 		body: rendered,
