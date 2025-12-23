@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type Elysia from "elysia";
+import { resolveResponse } from "./response";
 import type { RouteFn } from "./types";
 
 export async function registerRoutes(
@@ -21,7 +22,7 @@ export async function registerRoutes(
 		if (defaultFn && typeof defaultFn === "function") {
 			app.all(prefix, async ({ request, query, params }) => {
 				const result = await defaultFn({ request, query, params });
-				return result;
+				return resolveResponse(result);
 			});
 			console.log(`Registered ${fullPath} on ${prefix} route with method all`);
 		}
@@ -33,7 +34,7 @@ export async function registerRoutes(
 			if (!["get", "post", "put", "patch", "delete"].includes(name)) continue;
 			app[name as "get"](prefix, async ({ request, query, params }) => {
 				const result = await fn({ request, query, params });
-				return result;
+				return resolveResponse(result);
 			});
 			console.log(
 				`Registered ${fullPath} on ${prefix} route with method ${name}`,
