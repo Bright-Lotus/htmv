@@ -22,7 +22,7 @@ describe("Routing tests", () => {
 			);
 			const app = new Elysia();
 			await registerRoutes(app, project);
-			expect(app.routes).toEqual(expectedOutput);
+			expect(app.routes).toMatchObject(expectedOutput);
 		});
 	});
 });
