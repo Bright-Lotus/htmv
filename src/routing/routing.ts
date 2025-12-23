@@ -16,6 +16,6 @@ export async function registerRoutes(
 			continue;
 		}
 		if (entry.name !== "index.ts") continue;
-		registerModuleRoutes(app, prefix, fullPath);
+		await registerModuleRoutes(app, prefix, fullPath);
 	}
 }
