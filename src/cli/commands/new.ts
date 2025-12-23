@@ -71,7 +71,10 @@ export default async (_params: RouteParams) => {
 		path.join(fullPath, "tsconfig.json"),
 		"utf-8",
 	);
-
+	let tsconfigWithoutStartingBracket = tsconfig.split("\n").slice(1).join("\n");
+	tsconfigWithoutStartingBracket = `{
+	"exclude": ["public"],
+${tsconfigWithoutStartingBracket}`;
 	console.log(`All done! Project ${name} created.`);
 	console.log(`Now run cd ${name} and start building your next big project!`);
 };
