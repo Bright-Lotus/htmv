@@ -11,6 +11,4 @@ export type Paths = {
 	port: number;
 };
 
-export type RouteFn = (
-	_: RouteParams,
-) => Promise<Response> | Response | Promise<string> | string;
+export type RouteFn = (_: RouteParams) => unknown;
