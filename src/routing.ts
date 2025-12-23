@@ -44,3 +44,7 @@ function registerRoute(app: Elysia, method: Method, path: string, fn: RouteFn) {
 		return resolveResponse(result);
 	});
 }
+
+function isMethod(value: string): value is Method {
+	return ["get", "post", "put", "patch", "delete", "all"].includes(value);
+}
