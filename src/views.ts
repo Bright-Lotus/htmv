@@ -21,5 +21,9 @@ export async function view(view: string, props: Record<string, unknown>) {
 	const tokens = tokenize(code);
 	const root = parse(tokens);
 	const rendered = render(root, props);
-	return resolveResponse(rendered);
+	return resolveResponse({
+		status: 200,
+		body: rendered,
+		headers: { "Content-Type": "text/html; charset=utf-8" },
+	});
 }
