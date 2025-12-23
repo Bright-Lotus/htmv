@@ -24,7 +24,6 @@ export async function registerRoutes(
 				const result = await defaultFn({ request, query, params });
 				return resolveResponse(result);
 			});
-			console.log(`Registered ${fullPath} on ${prefix} route with method all`);
 		}
 		for (const propName in module) {
 			const prop = module[propName];
