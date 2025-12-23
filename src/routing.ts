@@ -4,6 +4,8 @@ import type Elysia from "elysia";
 import { resolveResponse } from "./http/response";
 import type { RouteFn } from "./types";
 
+type Method = "get" | "post" | "put" | "patch" | "delete" | "all";
+
 export async function registerRoutes(
 	app: Elysia,
 	baseDir: string,
@@ -36,12 +38,7 @@ export async function registerRoutes(
 	}
 }
 
-function registerRoute(
-	app: Elysia,
-	method: "get" | "post" | "put" | "patch" | "delete" | "all",
-	path: string,
-	fn: RouteFn,
-) {
+function registerRoute(app: Elysia, method: Method, path: string, fn: RouteFn) {
 	app[method as "get"](path, async ({ request, query, params }) => {
 		const result = await fn({ request, query, params });
 		return resolveResponse(result);
