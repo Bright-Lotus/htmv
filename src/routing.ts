@@ -32,8 +32,9 @@ export async function registerRoutes(
 			if (typeof prop !== "function") continue;
 			const fn = prop as RouteFn;
 			const name = fn.name.toLowerCase();
-			if (!["get", "post", "put", "patch", "delete"].includes(name)) continue;
-			registerRoute(app, name as "get", prefix, fn);
+			if (isMethod(name)) {
+				registerRoute(app, name, prefix, fn);
+			}
 		}
 	}
 }
