@@ -1,5 +1,3 @@
-import type { ResponseLike } from "./http/response";
-
 export type RouteParams = {
 	query: Record<string, string>;
 	request: Request;
@@ -12,5 +10,3 @@ export type Paths = {
 	public: string;
 	port: number;
 };
-
-export type RouteFn = (_: RouteParams) => ResponseLike | Promise<ResponseLike>;
