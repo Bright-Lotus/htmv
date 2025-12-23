@@ -6,4 +6,4 @@ export type HttpResponse = {
 
 type ResponseLike = string | object | HttpResponse;
 
-function response() {}
+function resolveResponse(result: ResponseLike): Response {}
