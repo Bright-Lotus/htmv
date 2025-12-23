@@ -32,3 +32,7 @@ function isHttpResponse(value: object): value is HttpResponse {
 	if (!("body" in value) || typeof value.body !== "string") return false;
 	return true;
 }
+
+export function HttpResponse(response: HttpResponse) {
+	return response;
+}
