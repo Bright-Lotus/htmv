@@ -40,36 +40,36 @@ export function HttpResponse(response: HttpResponse) {
 }
 
 export function BadRequest(
-	contents?: string | object,
+	body?: string | object,
 	headers?: Headers,
 ): HttpResponse {
-	return requestHelper(400, contents, headers);
+	return requestHelper(400, body, headers);
 }
 
 export function Created(
-	contents?: string | object,
+	body?: string | object,
 	headers?: Headers,
 ): HttpResponse {
-	return requestHelper(201, contents, headers);
+	return requestHelper(201, body, headers);
 }
 
 function requestHelper(
 	status: number,
-	contents?: string | object,
+	body?: string | object,
 	headers?: Headers,
 ): HttpResponse {
-	if (contents === undefined)
+	if (body === undefined)
 		return {
 			status,
 			headers,
 		};
 	return {
 		status,
-		body: typeof contents === "string" ? contents : JSON.stringify(contents),
+		body: typeof body === "string" ? body : JSON.stringify(body),
 		headers:
 			headers !== undefined
 				? headers
-				: typeof contents === "string"
+				: typeof body === "string"
 					? { "Content-Type": "text/plain; charset=utf-8" }
 					: { "Content-Type": "application/json; charset=utf-8" },
 	};
