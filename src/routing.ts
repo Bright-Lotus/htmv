@@ -31,10 +31,19 @@ export async function registerRoutes(
 			const fn = prop as RouteFn;
 			const name = fn.name.toLowerCase();
 			if (!["get", "post", "put", "patch", "delete"].includes(name)) continue;
-			app[name as "get"](prefix, async ({ request, query, params }) => {
-				const result = await fn({ request, query, params });
-				return resolveResponse(result);
-			});
+			registerRoute(app, name as "get", prefix, fn);
 		}
 	}
+}
+
+function registerRoute(
+	app: Elysia,
+	method: "get" | "post" | "put" | "patch" | "delete" | "all",
+	path: string,
+	fn: RouteFn,
+) {
+	app[method as "get"](path, async ({ request, query, params }) => {
+		const result = await fn({ request, query, params });
+		return resolveResponse(result);
+	});
 }
