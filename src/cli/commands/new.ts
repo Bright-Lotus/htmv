@@ -67,7 +67,16 @@ export default async (_params: RouteParams) => {
 		cwd: fullPath,
 	});
 	console.log("6. Rewriting tsconfig.json...");
-
+	const tsconfig = await fs.readFile(
+		path.join(fullPath, "tsconfig.json"),
+		"utf-8",
+	);
+	const tsconfigJson = JSON.parse(tsconfig);
+	tsconfigJson.exclude = ["public"];
+	fs.writeFile(
+		path.join(fullPath, "tsconfig.json"),
+		JSON.stringify(tsconfigJson, null, 2),
+	);
 	console.log(`All done! Project ${name} created.`);
 	console.log(`Now run cd ${name} and start building your next big project!`);
 };
