@@ -36,9 +36,6 @@ export async function registerRoutes(
 				const result = await fn({ request, query, params });
 				return resolveResponse(result);
 			});
-			console.log(
-				`Registered ${fullPath} on ${prefix} route with method ${name}`,
-			);
 		}
 	}
 }
