@@ -12,8 +12,10 @@
 	{ "type": "text", "text": "\n  " },
 	{ "type": "open", "tag": "meta" },
 	{ "type": "arguments", "value": "name=\"viewport\"" },
-	{ "type": "arguments", "value": "content=\"width=device-width," },
-	{ "type": "arguments", "value": "initial-scale=1.0\"" },
+	{
+		"type": "arguments",
+		"value": "content=\"width=device-width, initial-scale=1.0\""
+	},
 	{ "type": "text", "text": "\n  " },
 	{ "type": "open", "tag": "title" },
 	{ "type": "text", "text": "This website's title is: " },
