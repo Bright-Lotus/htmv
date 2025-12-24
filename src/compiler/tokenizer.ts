@@ -72,7 +72,8 @@ export function tokenize(input: string): Token[] {
 				i = finishingPosition;
 				continue;
 			}
-			const args = values.slice(1);
+			const rawArgs = values.slice(1);
+			const args = splitRawArguments(rawArgs);
 			tokens.push({
 				type: "open",
 				tag,
@@ -150,3 +151,5 @@ function readTill(
 		finishingPosition,
 	};
 }
+
+function splitRawArguments(args: string[]) {}
