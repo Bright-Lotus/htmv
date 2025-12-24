@@ -3,6 +3,7 @@
 	"children": [
 		{ "type": "text", "text": "<h1 " },
 		{ "type": "text", "text": "class='example'" },
+		{ "type": "text", "text": " " },
 		{ "type": "text", "text": "abc=100" },
 		{ "type": "text", "text": ">" },
 		{ "type": "text", "text": "Inside" },
