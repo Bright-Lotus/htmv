@@ -152,4 +152,40 @@ function readTill(
 	};
 }
 
-function splitRawArguments(args: string[]) {}
+function splitRawArguments(args: string[]) {
+	const result: string[] = [];
+
+	let current: string | null = null;
+	let quote: "'" | '"' | null = null;
+
+	for (const part of args) {
+		if (current === null) {
+			const match = part.match(/(['"])/);
+
+			if (match) {
+				const q = match[1] as "'" | '"';
+				const count = (part.match(new RegExp(q, "g")) || []).length;
+
+				if (count === 1) {
+					current = part;
+					quote = q;
+				} else {
+					result.push(part);
+				}
+			} else {
+				result.push(part);
+			}
+		} else {
+			current += " " + part;
+
+			const count = (current.match(new RegExp(quote!, "g")) || []).length;
+			if (count % 2 === 0) {
+				result.push(current);
+				current = null;
+				quote = null;
+			}
+		}
+	}
+
+	return result;
+}
