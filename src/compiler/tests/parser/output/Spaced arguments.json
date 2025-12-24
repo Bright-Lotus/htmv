@@ -1,0 +1,16 @@
+{
+	"type": "root",
+	"children": [
+		{ "type": "text", "text": "<p " },
+		{ "type": "text", "text": "value=\"i" },
+		{ "type": "text", "text": " am" },
+		{ "type": "text", "text": " the" },
+		{ "type": "text", "text": " value\"" },
+		{ "type": "text", "text": " hello=\"i" },
+		{ "type": "text", "text": " am" },
+		{ "type": "text", "text": " another" },
+		{ "type": "text", "text": " value\"" },
+		{ "type": "text", "text": ">" },
+		{ "type": "text", "text": "</p>" }
+	]
+}
