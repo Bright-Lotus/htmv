@@ -22,6 +22,8 @@ describe("Routing tests", () => {
 			);
 			const app = new Elysia();
 			await registerRoutes(app, project);
+			console.log("EXPECTED");
+			console.log(app.routes);
 			expect(app.routes).toMatchObject(expectedOutput);
 		});
 	});
