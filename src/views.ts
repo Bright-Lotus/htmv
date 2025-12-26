@@ -4,6 +4,7 @@ import { parse } from "./compiler/parser";
 import { render } from "./compiler/renderer";
 import { tokenize } from "./compiler/tokenizer";
 import type { HttpResponse } from "./http/response";
+import { viewRegistry } from "./views-registry";
 
 export let viewsPath = "";
 
@@ -11,16 +12,15 @@ export function setViewsPath(path: string) {
 	viewsPath = path;
 }
 
-export async function view(
+export function view(
 	view: string,
 	props?: Record<string, unknown>,
-): Promise<HttpResponse> {
+): HttpResponse {
 	if (viewsPath === "")
 		throw new Error(
 			"Views folder path not yet configured. Use `Htmv.setup` before rendering a view.",
 		);
-	const filePath = path.join(viewsPath, `${view}.html`);
-	const code = await fs.readFile(filePath, "utf-8");
+	const code = viewRegistry[view] ?? "";
 	const tokens = tokenize(code);
 	const root = parse(tokens);
 	const rendered = render(root, props ? props : {});
