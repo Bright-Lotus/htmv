@@ -67,9 +67,8 @@ export async function render(
 		if (Array.isArray(list)) {
 			const output = list.map((item) => {
 				return node.children
-					.map(
-						async (childrenNode) =>
-							await render(childrenNode, { ...context, [node.itemName]: item }),
+					.map((childrenNode) =>
+						render(childrenNode, { ...context, [node.itemName]: item }),
 					)
 					.join("");
 			});
@@ -86,9 +85,7 @@ export async function render(
 		const prop = resolvePropertyPath(propName);
 		const exists = isset(prop);
 		if (isNegated ? !exists : exists) {
-			return node.children
-				.map(async (node) => await render(node, context))
-				.join("");
+			return node.children.map((node) => render(node, context)).join("");
 		}
 		return "";
 	}
@@ -96,7 +93,7 @@ export async function render(
 		const renderedView = (await view(node.path)).body;
 		return renderedView ?? "";
 	}
-	const output = node.children.map(async (node) => await render(node, context));
+	const output = node.children.map((node) => render(node, context));
 	return output.join("");
 
 	function resolvePropertyPath(path: string) {
