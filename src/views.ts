@@ -5,7 +5,7 @@ import { render } from "./compiler/renderer";
 import { tokenize } from "./compiler/tokenizer";
 import type { HttpResponse } from "./http/response";
 
-let viewsPath = "";
+export let viewsPath = "";
 
 export function setViewsPath(path: string) {
 	viewsPath = path;
