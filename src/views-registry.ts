@@ -8,6 +8,17 @@ export function addToViewRegistry(name: string, code: string) {
 	viewRegistry[name] = code;
 }
 
+export async function registerViews() {
+	const files = await deepReadDir(viewsPath);
+	for (const file of files) {
+		if (file.endsWith(".html")) {
+			const name = file.slice(0, -".html".length);
+			const code = await fs.readFile(name, "utf-8");
+			addToViewRegistry(name, code);
+		}
+	}
+}
+
 async function deepReadDir(dir: string): Promise<string[]> {
 	const entries = await fs.readdir(dir, { withFileTypes: true });
 
