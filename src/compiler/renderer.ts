@@ -4,7 +4,14 @@ export type Node =
 	| InterpolationNode
 	| IssetNode
 	| ForNode
-	| AttributeBindingNode;
+	| AttributeBindingNode
+	| ComponentNode;
+
+export interface ComponentNode {
+	type: "component";
+	path: string;
+	children?: Node[];
+}
 
 export interface RootNode {
 	type: "root";
@@ -77,6 +84,7 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		}
 		return "";
 	}
+
 	const output = node.children.map((node) => render(node, context));
 	return output.join("");
 
