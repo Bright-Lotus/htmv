@@ -12,7 +12,9 @@ export type Node =
 export interface ComponentNode {
 	type: "component";
 	path: string;
-	children?: Node[];
+	props: Record<string, unknown>;
+	selfClosing: boolean;
+	children: Node[];
 }
 
 export interface RootNode {
