@@ -20,7 +20,10 @@ export function view(
 		throw new Error(
 			"Views folder path not yet configured. Use `Htmv.setup` before rendering a view.",
 		);
-	const code = viewRegistry[view] ?? "";
+	const code = viewRegistry[view];
+	if (code === undefined)
+		throw new Error(`View ${view} not found. Did you use the correct name?`);
+
 	const tokens = tokenize(code);
 	const root = parse(tokens);
 	const rendered = render(root, props ? props : {});
