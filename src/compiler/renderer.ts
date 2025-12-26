@@ -1,3 +1,5 @@
+import { view } from "../views";
+
 export type Node =
 	| RootNode
 	| TextNode
@@ -47,7 +49,10 @@ interface AttributeBindingNode {
 	expr: string;
 }
 
-export function render(node: Node, context: Record<string, unknown>): string {
+export async function render(
+	node: Node,
+	context: Record<string, unknown>,
+): Promise<string> {
 	if (node.type === "attr-binding") {
 		const prop = resolvePropertyPath(node.expr);
 		const exists = isset(prop);
@@ -84,7 +89,10 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		}
 		return "";
 	}
-
+	if (node.type === "component") {
+		const renderedView = (await view(node.path)).body;
+		return renderedView ?? "";
+	}
 	const output = node.children.map((node) => render(node, context));
 	return output.join("");
 
