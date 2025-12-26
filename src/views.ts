@@ -23,7 +23,7 @@ export async function view(
 	const code = await fs.readFile(filePath, "utf-8");
 	const tokens = tokenize(code);
 	const root = parse(tokens);
-	const rendered = render(root, props ? props : {});
+	const rendered = await render(root, props ? props : {});
 	return {
 		status: 200,
 		body: rendered,
