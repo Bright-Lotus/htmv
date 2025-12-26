@@ -1,0 +1,14 @@
+[
+	{ "type": "open", "tag": "Header" },
+	{ "type": "arguments", "value": "title=\"My page\"" },
+	{ "type": "arguments", "value": "description=\"This is my cool header\"" },
+	{ "type": "text", "text": "Inside the header" },
+	{ "type": "close", "tag": "Header" },
+	{ "type": "text", "text": "\n" },
+	{ "type": "open", "tag": "path/to/the/component/Component" },
+	{ "type": "arguments", "value": "/" },
+	{ "type": "text", "text": "\n" },
+	{ "type": "open", "tag": "path/to/the/component/Another" },
+	{ "type": "text", "text": "Inside another component" },
+	{ "type": "close", "tag": "path/to/the/component/Another" }
+]
