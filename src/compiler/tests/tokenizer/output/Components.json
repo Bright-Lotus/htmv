@@ -6,7 +6,6 @@
 	{ "type": "close", "tag": "Header" },
 	{ "type": "text", "text": "\n" },
 	{ "type": "open", "tag": "path/to/the/component/Component" },
-	{ "type": "arguments", "value": "/" },
 	{ "type": "text", "text": "\n" },
 	{ "type": "open", "tag": "path/to/the/component/Another" },
 	{ "type": "text", "text": "Inside another component" },
