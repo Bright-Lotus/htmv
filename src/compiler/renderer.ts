@@ -1,3 +1,5 @@
+import { view } from "../views";
+
 export type Node =
 	| RootNode
 	| TextNode
@@ -84,7 +86,10 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		}
 		return "";
 	}
-
+	if (node.type === "component") {
+		const renderedView = view(node.path).body;
+		return renderedView ?? "";
+	}
 	const output = node.children.map((node) => render(node, context));
 	return output.join("");
 
