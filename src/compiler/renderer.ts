@@ -13,7 +13,6 @@ export interface ComponentNode {
 	type: "component";
 	path: string;
 	props: Record<string, unknown>;
-	selfClosing: boolean;
 	children: Node[];
 }
 
@@ -89,7 +88,10 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		return "";
 	}
 	if (node.type === "component") {
-		const renderedView = view(node.path).body;
+		const renderedView = view(node.path, {
+			...node.props,
+			children: node.children.map((node) => render(node, context)).join(""),
+		}).body;
 		return renderedView ?? "";
 	}
 	const output = node.children.map((node) => render(node, context));
