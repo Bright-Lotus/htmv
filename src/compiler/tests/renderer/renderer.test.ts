@@ -13,7 +13,7 @@ describe("Renderer tests", () => {
 		test(name, async () => {
 			const input = (await import(path.resolve(inputFilesPath, inputFileName)))
 				.default;
-			const output = render(input.root, input.context);
+			const output = await render(input.root, input.context);
 			const expectedOutput = await Bun.file(
 				path.resolve(outputFilesPath, `${name}.html`),
 			).text();
