@@ -7,7 +7,7 @@ if (fileName === undefined) throw new Error("Missing input test file name");
 const input = (
 	await import(path.resolve(import.meta.dir, "input", `${fileName}.ts`))
 ).default;
-const output = render(input.root, input.context);
+const output = await render(input.root, input.context);
 const outputFilePath = path.resolve(
 	import.meta.dir,
 	"output",
