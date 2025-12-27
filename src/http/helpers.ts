@@ -23,3 +23,7 @@ export function noContent(headers?: Headers) {
 export function unauthorized(body?: string | object, headers?: Headers) {
 	return requestHelper(401, body, headers);
 }
+
+export function forbidden(body?: string | object, headers?: Headers) {
+	return requestHelper(403, body, headers);
+}
