@@ -14,9 +14,10 @@ export async function registerViews() {
 	const files = await deepReadDir(viewsPath);
 	for (const file of files) {
 		if (file.endsWith(".html")) {
-			const name = file.slice(0, -".html".length);
+			const relativePath = path.relative(viewsPath, file);
+			const name = relativePath.slice(0, -".html".length);
 			const code = await fs.readFile(file, "utf-8");
-			addToViewRegistry(path.basename(name), code);
+			addToViewRegistry(name, code);
 		}
 	}
 }
