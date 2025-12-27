@@ -85,7 +85,7 @@ export function parse(tokens: Token[]) {
 				const pathName = token.tag.split("/").at(-1);
 				if (pathName !== undefined && startsWithUppercase(pathName)) {
 					// component
-					const rawArgs = [];
+					const rawArgs: string[] = [];
 					let nextToken = tokens[i];
 					while (nextToken?.type === "arguments") {
 						rawArgs.push(nextToken.value);
@@ -94,11 +94,21 @@ export function parse(tokens: Token[]) {
 					}
 					if (rawArgs.at(-1) === "/") {
 						// is self closing
+						nodes.push({
+							type: "component",
+							path: token.tag,
+							props: rawArgsToProps(rawArgs),
+							children: [],
+						});
+						continue;
 					}
 					nodes.push({
 						type: "component",
-						children,
+						path: token.tag,
+						props: rawArgsToProps(rawArgs.slice(0, -1)),
+						children: parseChildren(token.tag),
 					});
+					continue;
 				}
 				nodes.push({
 					type: "text",
