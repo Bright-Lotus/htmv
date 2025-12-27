@@ -13,7 +13,7 @@ export async function registerViews() {
 	for (const file of files) {
 		if (file.endsWith(".html")) {
 			const name = file.slice(0, -".html".length);
-			const code = await fs.readFile(name, "utf-8");
+			const code = await fs.readFile(file, "utf-8");
 			addToViewRegistry(name, code);
 		}
 	}
