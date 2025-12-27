@@ -188,6 +188,9 @@ That's it. We can also make use of the `children` prop, like so:
 # Hot reloading
 Hot reloading has not yet been fully developed. For now, you may develop with `bun dev`, which will take care of reloading on route code change. However, note that this won't include views or hot reloading in the browser.
 
+# Linting
+As of now, views work under the `.html` extension. However, that is subject to change in the future due to HTMV's language adding features which do not exist on normal HTML. Expect errors to appear on your editor when working with views. This will get sorted out once the `.htmv` extension becomes available.
+
 # Still have questions?
 How about asking the DeepWiki instead?
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Fabrisdev/htmv)
