@@ -186,7 +186,7 @@ That's it. We can also make use of the `children` prop, like so:
 
 
 # Hot reloading
-Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
+Hot reloading has not yet been fully developed. For now, you may develop with `bun dev`, which will take care of reloading on route code change. However, note that this won't include views or hot reloading in the browser.
 
 # Still have questions?
 How about asking the DeepWiki instead?
