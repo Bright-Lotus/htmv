@@ -16,7 +16,7 @@ export async function registerViews() {
 		if (file.endsWith(".html")) {
 			const name = file.slice(0, -".html".length);
 			const code = await fs.readFile(file, "utf-8");
-			addToViewRegistry(name, code);
+			addToViewRegistry(path.basename(name), code);
 		}
 	}
 }
