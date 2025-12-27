@@ -82,7 +82,8 @@ export function parse(tokens: Token[]) {
 					});
 					continue;
 				}
-				if (startsWithUppercase(token.tag)) {
+				const pathName = token.tag.split("/").at(-1);
+				if (pathName !== undefined && startsWithUppercase(pathName)) {
 					// component
 				}
 				nodes.push({
