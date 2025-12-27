@@ -85,6 +85,19 @@ export function parse(tokens: Token[]) {
 				const pathName = token.tag.split("/").at(-1);
 				if (pathName !== undefined && startsWithUppercase(pathName)) {
 					// component
+					const rawArgs = [];
+					let nextToken = tokens[i];
+					while (nextToken?.type === "arguments") {
+						rawArgs.push(nextToken.value);
+						i++;
+					}
+					if (rawArgs.at(-1) === "/") {
+						// is self closing
+					}
+					nodes.push({
+						type: "component",
+						children,
+					});
 				}
 				nodes.push({
 					type: "text",
