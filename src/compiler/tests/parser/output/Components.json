@@ -4,7 +4,7 @@
 		{
 			"type": "component",
 			"path": "Header",
-			"props": { "title": "My page" },
+			"props": { "title": "My page", "description": "This is my cool header" },
 			"children": [{ "type": "text", "text": "Inside the header" }]
 		},
 		{ "type": "text", "text": "\n" },
