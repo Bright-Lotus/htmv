@@ -19,3 +19,7 @@ export function ok(body?: string | object, headers?: Headers) {
 export function noContent(headers?: Headers) {
 	return requestHelper(204, undefined, headers);
 }
+
+export function unauthorized(body?: string | object, headers?: Headers) {
+	return requestHelper(401, body, headers);
+}
