@@ -196,7 +196,8 @@ export function parse(tokens: Token[]) {
 }
 
 function startsWithUppercase(text: string) {
-	return text[0] === text[0]?.toUpperCase();
+	if (text[0] === undefined) return false;
+	return /[A-Z]/.test(text[0]);
 }
 
 function rawArgsToProps(rawArgs: string[]) {
