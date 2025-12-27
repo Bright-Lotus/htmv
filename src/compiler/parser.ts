@@ -106,7 +106,7 @@ export function parse(tokens: Token[]) {
 						type: "component",
 						path: token.tag,
 						props: rawArgsToProps(rawArgs.slice(0, -1)),
-						children: parseChildren(token.tag),
+						children: parseChildren(tag),
 					});
 					continue;
 				}
@@ -197,4 +197,33 @@ export function parse(tokens: Token[]) {
 
 function startsWithUppercase(text: string) {
 	return text[0] === text[0]?.toUpperCase();
+}
+
+function rawArgsToProps(rawArgs: string[]) {
+	const props: Record<string, unknown> = {};
+
+	for (const arg of rawArgs) {
+		if (arg === "/") continue;
+		const eqIndex = arg.indexOf("=");
+
+		if (eqIndex === -1) {
+			// boolean prop
+			props[arg] = true;
+			continue;
+		}
+
+		const key = arg.slice(0, eqIndex);
+		let value = arg.slice(eqIndex + 1);
+
+		if (
+			(value.startsWith('"') && value.endsWith('"')) ||
+			(value.startsWith("'") && value.endsWith("'"))
+		) {
+			value = value.slice(1, -1);
+		}
+
+		props[key] = value;
+	}
+
+	return props;
 }
