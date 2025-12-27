@@ -90,6 +90,7 @@ export function parse(tokens: Token[]) {
 					while (nextToken?.type === "arguments") {
 						rawArgs.push(nextToken.value);
 						i++;
+						nextToken = tokens[i];
 					}
 					if (rawArgs.at(-1) === "/") {
 						// is self closing
