@@ -156,6 +156,10 @@ For this, you'll need attribute binding. And HTMV has got your back! Simply add 
 
 This tells HTMV's compiler: *"Don't add the attribute AND value, just add the attribute alone IF the value is truthy!"* 
 
+# Components
+One of HTMV's key values is that a component is just a view. Therefore, your `example` view is already a component!
+
+However, for HTMV to be able to differentiate it from an HTML element it must start with an uppercase (`Example`).
 
 # Hot reloading
 Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
