@@ -161,6 +161,30 @@ One of HTMV's key values is that a component is just a view. Therefore, your `ex
 
 However, for HTMV to be able to differentiate it from an HTML element it must start with an uppercase (`Example`).
 
+Let's create a header component with `bunx htmv gen view Header`
+
+Inside we can make use of attributes like so:
+```html
+<h1>{title}</h1>
+<h2>{description}</h2>
+```
+Lastly, in our `example` view, let's call it!
+```html
+<Header title="My cool webpage" description="It's purpose is to test HTMV's components!"/>
+```
+
+That's it. We can also make use of the `children` prop, like so:
+```html
+<!-- example view -->
+<Header description="It's purpose is to test HTMV's components!">My cool webpage</Header>
+```
+```html
+<!-- Header view -->
+<h1>{children}</h1>
+<h2>{description}</h2>
+```
+
+
 # Hot reloading
 Having to restart the server every time you make a change can be quite tedious. HTMV takes care of this thanks to Bun. Just develop with `bun dev` and it should work out of the box! Note that this does not include hot reloading in the browser. As of now, you have to refresh the page to see new changes. It doesn't update in real time.
 
