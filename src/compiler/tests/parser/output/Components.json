@@ -1,0 +1,25 @@
+{
+	"type": "root",
+	"children": [
+		{
+			"type": "component",
+			"path": "Header",
+			"props": { "title": "My page" },
+			"children": [{ "type": "text", "text": "Inside the header" }]
+		},
+		{ "type": "text", "text": "\n" },
+		{
+			"type": "component",
+			"path": "path/to/the/component/Component",
+			"props": {},
+			"children": []
+		},
+		{ "type": "text", "text": "\n" },
+		{
+			"type": "component",
+			"path": "path/to/the/component/Another",
+			"props": {},
+			"children": [{ "type": "text", "text": "Inside another component" }]
+		}
+	]
+}
