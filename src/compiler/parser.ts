@@ -82,6 +82,9 @@ export function parse(tokens: Token[]) {
 					});
 					continue;
 				}
+				if (startsWithUppercase(token.tag)) {
+					// component
+				}
 				nodes.push({
 					type: "text",
 					text: `<${tag} `,
@@ -165,4 +168,8 @@ export function parse(tokens: Token[]) {
 			}
 		}
 	}
+}
+
+function startsWithUppercase(text: string) {
+	return text[0] === text[0]?.toUpperCase();
 }
