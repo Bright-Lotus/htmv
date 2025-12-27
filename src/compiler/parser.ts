@@ -97,7 +97,7 @@ export function parse(tokens: Token[]) {
 						nodes.push({
 							type: "component",
 							path: token.tag,
-							props: rawArgsToProps(rawArgs),
+							props: rawArgsToProps(rawArgs.slice(0, -1)),
 							children: [],
 						});
 						continue;
@@ -105,7 +105,7 @@ export function parse(tokens: Token[]) {
 					nodes.push({
 						type: "component",
 						path: token.tag,
-						props: rawArgsToProps(rawArgs.slice(0, -1)),
+						props: rawArgsToProps(rawArgs),
 						children: parseChildren(tag),
 					});
 					continue;
