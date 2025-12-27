@@ -91,6 +91,7 @@ export function render(node: Node, context: Record<string, unknown>): string {
 		const renderedView = view(node.path, {
 			...node.props,
 			children: node.children.map((node) => render(node, context)).join(""),
+			...context,
 		}).body;
 		return renderedView ?? "";
 	}
