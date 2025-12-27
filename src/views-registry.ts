@@ -6,6 +6,8 @@ export const viewRegistry: Record<string, string> = {};
 
 export function addToViewRegistry(name: string, code: string) {
 	viewRegistry[name] = code;
+	console.log("Registered view", name, "with code:");
+	console.log(code);
 }
 
 export async function registerViews() {
