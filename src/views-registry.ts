@@ -3,6 +3,7 @@ import path from "node:path";
 import { viewsPath } from "./views";
 
 export const viewRegistry: Record<string, string> = {};
+const SUPPORTED_FILE_EXTENSIONS = ["html", "htmv"];
 
 export function addToViewRegistry(name: string, code: string) {
 	viewRegistry[name] = code;
@@ -11,11 +12,13 @@ export function addToViewRegistry(name: string, code: string) {
 export async function registerViews() {
 	const files = await deepReadDir(viewsPath);
 	for (const file of files) {
-		if (file.endsWith(".html")) {
-			const relativePath = path.relative(viewsPath, file);
-			const name = relativePath.slice(0, -".html".length);
-			const code = await fs.readFile(file, "utf-8");
-			addToViewRegistry(name, code);
+		for (const extension in SUPPORTED_FILE_EXTENSIONS) {
+			if (file.endsWith(`.${extension}`)) {
+				const relativePath = path.relative(viewsPath, file);
+				const name = relativePath.slice(0, -`.${extension}`.length);
+				const code = await fs.readFile(file, "utf-8");
+				addToViewRegistry(name, code);
+			}
 		}
 	}
 }
