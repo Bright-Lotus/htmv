@@ -23,7 +23,7 @@ export default async (args: string[]) => {
   <h1>This view was quickly generated with htmv gen.</h1>
 </body>
 </html>`;
-		const fileName = `${name}.html`;
+		const fileName = `${name}.htmv`;
 		const filePath = path.join(viewsFolderPath, fileName);
 		const fileAlreadyExists = await exists(filePath);
 		if (fileAlreadyExists)
