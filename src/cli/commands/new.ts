@@ -58,7 +58,7 @@ export default async (_params: RouteParams) => {
   <h1>{title}</h1>
 </body>
 </html>`;
-	await fs.writeFile(path.join(fullPath, "views", "example.html"), viewContent);
+	await fs.writeFile(path.join(fullPath, "views", "example.htmv"), viewContent);
 	console.log("5. Creating run scripts...");
 	await runCommand(`npm pkg set scripts.dev="bun --watch ."`, {
 		cwd: fullPath,
