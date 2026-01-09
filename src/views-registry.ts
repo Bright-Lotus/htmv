@@ -11,7 +11,7 @@ export const viewRegistry: Record<string, string> = {};
  */
 const SUPPORTED_FILE_EXTENSIONS = ["html", "htmv"];
 
-export function addToViewRegistry(name: string, code: string) {
+function addToViewRegistry(name: string, code: string) {
 	viewRegistry[name] = code;
 }
 
