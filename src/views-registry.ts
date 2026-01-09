@@ -3,6 +3,12 @@ import path from "node:path";
 import { viewsPath } from "./views";
 
 export const viewRegistry: Record<string, string> = {};
+
+/**
+ * Placing .HTMV last gives it priority
+ * This means, if there is both example.html and example.htmv in same subdir,
+ * example.htmv will take priority.
+ */
 const SUPPORTED_FILE_EXTENSIONS = ["html", "htmv"];
 
 export function addToViewRegistry(name: string, code: string) {
