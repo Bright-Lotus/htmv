@@ -11,7 +11,7 @@ type RegisterRouteParams = {
 
 export function registerRoute({ app, method, path, fn }: RegisterRouteParams) {
 	let servePath = path;
-	if (servePath.includes('[')) {
+	if (servePath.includes("[")) {
 		// Handle dynamic route parameters.
 		// E.g. /user/[id] -> /user/:id
 		// Folders in Windows cannot contain ":" so we use "[" and "]" instead.
