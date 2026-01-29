@@ -18,7 +18,7 @@ function addToViewRegistry(name: string, code: string) {
 export async function registerViews() {
 	const files = await deepReadDir(viewsPath);
 	for (const file of files) {
-		for (const extension in SUPPORTED_FILE_EXTENSIONS) {
+		for (const extension of SUPPORTED_FILE_EXTENSIONS) {
 			if (file.endsWith(`.${extension}`)) {
 				const relativePath = path.relative(viewsPath, file);
 				const name = relativePath.slice(0, -`.${extension}`.length);
