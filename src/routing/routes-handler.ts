@@ -10,7 +10,15 @@ type RegisterRouteParams = {
 };
 
 export function registerRoute({ app, method, path, fn }: RegisterRouteParams) {
-	app[method as "get"](path, async ({ request, query, params }) => {
+	// Replace all needed for Windows path shenanigans.
+	let servePath = path.replaceAll("\\", "/");
+    if (servePath.includes('[')) {
+		// Handle dynamic route parameters.
+		// E.g. /user/[id] -> /user/:id
+		// Folders in Windows cannot contain ":" so we use "[" and "]" instead.
+        servePath = servePath.replaceAll("[", ":").replaceAll("]", "");
+    }
+	app[method as "get"](servePath, async ({ request, query, params }) => {
 		const result = await fn({ request, query, params });
 		return resolveResponse(result);
 	});
