@@ -1,5 +1,4 @@
-
-import { Elysia } from "elysia";
+import type { Elysia } from "elysia";
 import { resolveResponse } from "../http/response.js";
 import type { Method, RouteFn } from "./types.js";
 
